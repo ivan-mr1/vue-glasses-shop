@@ -1,0 +1,5 @@
+<template>
+  <a href="index.html" class="logo header__logo">Optica</a>
+</template>
+
+<style scoped></style>
