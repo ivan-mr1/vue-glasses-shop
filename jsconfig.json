@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"],
+      "@shared/*": ["./src/shared/*"],
+      "@features/*": ["./src/features/*"],
+      "@widgets/*": ["./src/widgets/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@assets/*": ["./src/shared/assets/*"],
+      "@styles/*": ["./src/shared/lib/styles/*"],
+      "@helpers/*": ["./src/shared/lib/styles/helpers/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}
