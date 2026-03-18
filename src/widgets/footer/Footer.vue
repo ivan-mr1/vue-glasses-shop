@@ -12,7 +12,13 @@ import Social from '@/shared/ui/social/Social.vue';
       </div>
       <div class="footer__wrapper">
         <Social base-class="footer__soc1al" />
-        <Contacts base-class="footer__contacts" />
+        <Contacts
+          base-class="footer__contacts"
+          :contacts="[
+            { name: '+38(097) 450 18 72', tel: '+380974501872' },
+            { name: '+38(066) 230 33 68', tel: '+380662303368' },
+          ]"
+        />
       </div>
     </div>
   </footer>

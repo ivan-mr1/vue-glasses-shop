@@ -1,12 +1,8 @@
 <script setup>
 const props = defineProps({
   baseClass: String,
+  contacts: Array,
 });
-
-const contacts = [
-  { name: '+38(097) 450 18 72', tel: '+380974501872' },
-  { name: '+38(066) 230 33 68', tel: '+380662303368' },
-];
 </script>
 
 <template>
