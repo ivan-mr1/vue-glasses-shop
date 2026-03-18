@@ -10,7 +10,13 @@ import Burger1 from './burger-button';
     <div class="header__container">
       <Logo />
       <div data-header-overlay class="header__overlay">
-        <Menu />
+        <Menu
+          :list="[
+            { name: 'ПРО НАС', goto: 'about' },
+            { name: 'ПРОДУКТИ', href: 'products' },
+            { name: 'КОНТАКТИ', href: 'footer', goto: 'footer' },
+          ]"
+        />
         <Actions />
       </div>
       <Burger1 />
