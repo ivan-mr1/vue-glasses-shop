@@ -15,7 +15,7 @@ import Social from '@/shared/ui/social/Social.vue';
         <a href="#footer" class="menu__link hover-link">КОНТАКТИ</a>
       </li>
     </ul>
-    <Social />
+    <Social base-class="header__soc1al visible-mobile" />
   </nav>
 </template>
 
