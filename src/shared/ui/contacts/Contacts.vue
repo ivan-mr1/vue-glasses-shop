@@ -31,6 +31,7 @@ const props = defineProps({
 
 <style scoped lang="scss">
 @use '@helpers' as *;
+
 .contacts {
   &__item {
     display: flex;
