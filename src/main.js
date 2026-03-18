@@ -1,7 +1,6 @@
-import '@shared/lib/styles/main.scss';
 import { createApp } from 'vue';
-import App from './App.vue';
-import router from './router';
+import App from '@/app';
+import router from '@/app/routing';
 
 const app = createApp(App);
 

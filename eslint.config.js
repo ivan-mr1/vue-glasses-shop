@@ -1,4 +1,4 @@
-import { defineConfig, globalIgnores } from 'eslint/config';
+import { defineConfig } from 'eslint/config';
 import globals from 'globals';
 import js from '@eslint/js';
 import pluginVue from 'eslint-plugin-vue';
@@ -8,16 +8,15 @@ export default defineConfig([
   {
     name: 'app/files-to-lint',
     files: ['**/*.{vue,js,mjs,jsx}'],
+    ignores: [
+      '**/dist/**',
+      '**/build/**',
+      '**/dist-ssr/**',
+      '**/coverage/**',
+      'vite.config.js',
+      'postcss.config.js',
+    ],
   },
-
-  globalIgnores([
-    '**/dist/**',
-    '**/dist-ssr/**',
-    '**/coverage/**',
-    'postcss.config.js',
-    'vite.config.js',
-    '**/vite-plugins/**',
-  ]),
 
   {
     languageOptions: {

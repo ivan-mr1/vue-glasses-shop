@@ -6,4 +6,6 @@ import Header from '@/widgets/header/Header.vue';
   <Header />
 </template>
 
-<style scoped></style>
+<style scoped lang="scss">
+@use '@helpers' as *;
+</style>

@@ -16,7 +16,7 @@
     "format:fix": "prettier . --write",
     "lint": "run-s lint:js lint:css format",
     "lint:fix": "run-s lint:js:fix lint:css:fix format:fix",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "lint-staged": {
     "*.{js,ts,vue}": [
