@@ -37,12 +37,7 @@ const { isMenuOpen, isScrolled, isHidden, headerRef, toggleMenu, closeMenu } = u
         <Actions />
       </div>
 
-      <Burger1
-        :isActive="isMenuOpen"
-        :aria-label="isMenuOpen ? 'Close menu' : 'Open menu'"
-        :title="isMenuOpen ? 'Close menu' : 'Open menu'"
-        @click="toggleMenu"
-      />
+      <Burger1 :isActive="isMenuOpen" @click="toggleMenu" />
     </div>
   </header>
 </template>
@@ -57,7 +52,6 @@ const { isMenuOpen, isScrolled, isHidden, headerRef, toggleMenu, closeMenu } = u
   top: 0;
   left: 0;
   width: 100%;
-  background-color: gray;
 
   transition: transform 0.3s ease;
 

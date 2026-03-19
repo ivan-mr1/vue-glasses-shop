@@ -1,13 +1,7 @@
-<script setup>
-import Cart from '@/features/cart/Cart.vue';
-import Favorite from '@/features/favorite/Favorite.vue';
-</script>
+<script setup></script>
 
 <template>
-  <div class="header__actions">
-    <Favorite />
-    <Cart />
-  </div>
+  <div class="header__actions"></div>
 </template>
 
 <style scoped lang="scss">
