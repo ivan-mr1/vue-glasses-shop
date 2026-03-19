@@ -6,12 +6,9 @@
 @use '@helpers' as *;
 
 .logo {
-  position: relative;
-  z-index: 5;
   font-family: var(--second-family);
   font-size: rem(32);
   color: var(--color-light);
-  cursor: pointer;
 
   @include hover {
     color: var(--color-orange);

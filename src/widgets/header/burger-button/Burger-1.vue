@@ -1,11 +1,24 @@
+<script setup>
+defineOptions({
+  inheritAttrs: false,
+});
+
+const props = defineProps({
+  isActive: {
+    type: Boolean,
+    default: false,
+  },
+});
+</script>
+
 <template>
   <button
+    v-bind="$attrs"
     type="button"
     class="header__burger-button burger-button"
-    data-header-burger-btn
-    aria-expanded="false"
-    aria-label="Open or close menu"
-    title="Open or close menu"
+    :class="{ 'is-active': props.isActive }"
+    :aria-label="props.isActive ? 'Close menu' : 'Open menu'"
+    :title="props.isActive ? 'Close menu' : 'Open menu'"
   >
     <span class="burger-button__inner">
       <span class="burger-button__line"></span>
