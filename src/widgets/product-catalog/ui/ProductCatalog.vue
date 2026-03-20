@@ -14,7 +14,7 @@ const onClickFavorite = () => {
       image-url="/img/products/glasses/1.webp"
       code="01-5"
       :price="22200.22"
-      :isAdded="true"
+      :isAdded="false"
       is-favorite=""
       :onClickFavorite="onClickFavorite"
       :onClickAdd="onClickAdd"

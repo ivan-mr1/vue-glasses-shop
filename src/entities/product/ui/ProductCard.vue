@@ -1,4 +1,5 @@
 <script setup>
+import Button from '@/shared/ui/form/button';
 import { formatPrice } from '@/shared/utils/formatPrice';
 
 defineProps({
@@ -57,14 +58,14 @@ defineProps({
           <div class="product__price-current">{{ formatPrice(price) }} грн</div>
         </div>
 
-        <button
+        <Button
+          class="button--card product__btn"
+          :in-cart="isAdded"
+          :aria-label="isAdded ? `Товар ${title} вже у кошику` : `Додати у кошик товар: ${title}`"
           @click.stop="onClickAdd"
-          type="button"
-          class="button button--card product__btn"
-          :aria-label="`Додати у кошик товар: ${title}`"
         >
-          {{ isAdded ? 'У кошику' : 'Купити' }}
-        </button>
+          {{ isAdded ? 'У кошику' : 'Купити' }}</Button
+        >
       </div>
     </div>
   </article>
@@ -167,46 +168,6 @@ defineProps({
     margin-top: auto;
     font-size: fluid(22, 18);
     font-weight: 600;
-  }
-}
-
-.button {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  cursor: pointer;
-  transition: var(--transition);
-  padding-block: rem(12);
-  padding-inline: rem(25);
-  font-weight: 600;
-  color: var(--color-white);
-  background-color: transparent;
-  border: 1px solid var(--color-white);
-  border-radius: var(--border-radius);
-  text-decoration: none;
-
-  &:active:not(.is-disabled) {
-    scale: 1.05;
-  }
-
-  @include hover {
-    &:not(.is-disabled) {
-      color: var(--color-orange);
-      border: 1px solid var(--color-orange);
-    }
-  }
-
-  &--card {
-    padding: fluid(12, 10);
-    color: var(--color-black);
-    border: 1px solid var(--color-orange);
-
-    &.is-in-cart {
-      color: var(--color-black);
-      background-color: var(--color-orange);
-      cursor: default;
-    }
   }
 }
 </style>

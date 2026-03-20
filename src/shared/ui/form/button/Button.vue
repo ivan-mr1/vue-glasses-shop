@@ -6,6 +6,7 @@ const props = defineProps({
   type: { type: String, default: 'button' },
   disabled: { type: Boolean, default: false },
   goto: { type: String, default: null },
+  inCart: { type: Boolean, default: false },
 });
 
 const isLink = computed(() => !!props.href);
@@ -15,7 +16,7 @@ const isLink = computed(() => !!props.href);
   <component
     :is="isLink ? 'a' : 'button'"
     class="button"
-    :class="{ 'is-disabled': disabled }"
+    :class="{ 'is-disabled': disabled, 'is-in-cart': inCart }"
     :href="isLink ? (disabled ? null : href) : null"
     :type="!isLink ? type : null"
     :disabled="!isLink ? disabled : null"
