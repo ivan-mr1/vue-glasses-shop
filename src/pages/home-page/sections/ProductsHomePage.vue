@@ -1,47 +1,26 @@
 <script setup>
 import HeaderBlock from '@/shared/ui/header-block';
+import ProductCatalog from '@/widgets/product-catalog/ui';
 </script>
 <template>
   <section id="products" class="page__products products" aria-labelledby="products-title">
     <div class="products__container">
       <HeaderBlock custom-class="products__header" id="products-title" title="Каталог" />
-      <ul class="products__list" data-products-catalog></ul>
-      <div class="pagination__container">
-        <div data-pagination class="pagination hidden">
-          <button
-            data-pagination-btn-prev
-            type="button"
-            class="pagination__btn pagination__btn-prev"
-          >
-            <svg
-              style="transform: rotate(180deg) scale(0.55)"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-            >
-              <path fill="#84868E" d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z"></path>
-            </svg>
-          </button>
-          <ul data-pagination-list class="pagination__list"></ul>
-          <button
-            data-pagination-btn-next
-            type="button"
-            class="pagination__btn pagination__btn-next"
-          >
-            <svg
-              style="transform: rotate(0deg) scale(0.55)"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-            >
-              <path fill="#84868E" d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z"></path>
-            </svg>
-          </button>
-        </div>
-      </div>
+      <ProductCatalog />
     </div>
   </section>
 </template>
-<style scoped></style>
+<style scoped lang="scss">
+@use '@helpers' as *;
+
+.products {
+  @include adaptive-clamp('padding-top', 120, 80);
+  @include adaptive-clamp('padding-bottom', 60, 20);
+
+  &__header {
+    &:not(:last-child) {
+      margin-bottom: rem(40);
+    }
+  }
+}
+</style>

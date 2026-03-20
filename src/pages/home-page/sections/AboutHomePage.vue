@@ -1,4 +1,5 @@
 <script setup>
+import HeaderBlock from '@/shared/ui/header-block';
 import Scroller from '@/shared/ui/scroller';
 
 const scrollerItems = [
@@ -6,6 +7,7 @@ const scrollerItems = [
   'Доставка по Європі.',
   'Гарантійний сервіс.',
   'Безкоштовна консультація.',
+  'Бездоганна репутація',
 ];
 </script>
 <template>
@@ -26,9 +28,7 @@ const scrollerItems = [
           />
         </div>
         <div class="about__descr">
-          <div class="about__header header-block">
-            <h2 class="header-block__title" id="about-title">Про нас</h2>
-          </div>
+          <HeaderBlock custom-class="about__header" id="about-title" title="Про нас" />
           <div class="about__text">
             <p>
               OPTICA – це більше, ніж просто місце призначення, це подорож у світ стилю,
