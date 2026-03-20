@@ -19,6 +19,36 @@ const onClickFavorite = () => {
       :onClickFavorite="onClickFavorite"
       :onClickAdd="onClickAdd"
     />
+    <ProductCard
+      title="glasses model 1"
+      image-url="/img/products/glasses/1.webp"
+      code="01-5"
+      :price="22200.22"
+      :isAdded="false"
+      is-favorite=""
+      :onClickFavorite="onClickFavorite"
+      :onClickAdd="onClickAdd"
+    />
+    <ProductCard
+      title="glasses model 1"
+      image-url="/img/products/glasses/1.webp"
+      code="01-5"
+      :price="22200.22"
+      :isAdded="false"
+      is-favorite=""
+      :onClickFavorite="onClickFavorite"
+      :onClickAdd="onClickAdd"
+    />
+    <ProductCard
+      title="glasses model 1"
+      image-url="/img/products/glasses/1.webp"
+      code="01-5"
+      :price="22200.22"
+      :isAdded="false"
+      is-favorite=""
+      :onClickFavorite="onClickFavorite"
+      :onClickAdd="onClickAdd"
+    />
   </ul>
 </template>
 <style scoped lang="scss">
