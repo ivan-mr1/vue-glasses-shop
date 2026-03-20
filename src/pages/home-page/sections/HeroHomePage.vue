@@ -1,4 +1,5 @@
 <script setup>
+import Button from '@/shared/ui/form/button/Button.vue';
 import ScrollDownButton from '@/shared/ui/scroll-down-button/ScrollDownButton.vue';
 </script>
 <template>
@@ -13,15 +14,15 @@ import ScrollDownButton from '@/shared/ui/scroll-down-button/ScrollDownButton.vu
         </div>
         <h1 class="hero__title" id="hero-title">Ми допоможемо вам побачити світ по-новому.</h1>
         <div class="hero__buttons">
-          <a href="#about" class="hero__button button">ПРО НАС</a>
-          <a href="#products" class="hero__button button">ПРОДУКТИ</a>
+          <Button class="hero__button" goto=".about">ПРО НАС</Button>
+          <Button class="hero__button" goto=".products">ПРОДУКТИ</Button>
         </div>
       </div>
     </div>
     <video class="video-fon" autoplay muted loop>
       <source type="video/mp4" src="@/shared/assets/video/10.mp4" />
     </video>
-    <ScrollDownButton data-goto=".about" />
+    <ScrollDownButton goto=".about" />
   </section>
 </template>
 <style scoped lang="scss">

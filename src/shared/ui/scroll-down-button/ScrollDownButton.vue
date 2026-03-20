@@ -1,6 +1,6 @@
 <script setup>
 defineProps({
-  dataGoto: String,
+  goto: { type: String, default: null },
 });
 </script>
 
@@ -8,7 +8,7 @@ defineProps({
   <button
     type="button"
     class="scroll-down-btn"
-    :data-goto="dataGoto"
+    :data-goto="goto"
     title="Scroll down"
     aria-label="Scroll down"
   >
