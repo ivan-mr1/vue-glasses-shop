@@ -2,24 +2,42 @@
 import Logo from '@/shared/ui/logo/Logo.vue';
 import Menu from './Menu.vue';
 import Actions from './Actions.vue';
-import Burger1 from './burger-button';
+import Burger1 from './burger-button/Burger-1.vue';
+
+import { useHeader } from '@/widgets/header/useHeader';
+
+const { isMenuOpen, isScrolled, isHidden, headerRef, toggleMenu, closeMenu } = useHeader();
 </script>
 
 <template>
-  <header class="header" data-header data-right-padding>
+  <header
+    ref="headerRef"
+    class="header"
+    :class="{
+      'is-active': isMenuOpen,
+      scroll: isScrolled,
+      'is-hidden': isHidden,
+    }"
+    data-right-padding
+  >
     <div class="header__container">
       <Logo />
-      <div data-header-overlay class="header__overlay">
+
+      <div class="header__overlay" @click.self="closeMenu">
         <Menu
+          :isOpen="isMenuOpen"
           :list="[
             { name: 'ПРО НАС', goto: 'about' },
             { name: 'ПРОДУКТИ', href: 'products' },
             { name: 'КОНТАКТИ', href: 'footer', goto: 'footer' },
           ]"
+          @click="closeMenu"
         />
+
         <Actions />
       </div>
-      <Burger1 />
+
+      <Burger1 :isActive="isMenuOpen" @click="toggleMenu" />
     </div>
   </header>
 </template>
@@ -35,6 +53,12 @@ import Burger1 from './burger-button';
   left: 0;
   width: 100%;
 
+  transition: transform 0.3s ease;
+
+  &.is-hidden {
+    transform: translateY(-100%);
+  }
+
   &__container {
     display: flex;
     justify-content: space-between;
@@ -44,39 +68,16 @@ import Burger1 from './burger-button';
     @include adaptive-clamp('min-height', 100, 65);
   }
 
+  &__logo {
+    position: relative;
+    z-index: 5;
+  }
+
   &__overlay {
     display: flex;
     justify-content: space-between;
     align-items: center;
     column-gap: 1rem;
-  }
-
-  &__logo {
-    position: relative;
-    z-index: 5;
-    font-family: var(--second-family);
-    font-size: rem(32);
-    color: var(--color-light);
-    cursor: pointer;
-
-    @include hover {
-      color: var(--color-orange);
-    }
-  }
-
-  &__actions {
-    position: relative;
-    z-index: 5;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: rem(16);
-  }
-
-  &__action {
-    --size: #{rem(40)};
-
-    @include square(var(--size));
   }
 }
 </style>

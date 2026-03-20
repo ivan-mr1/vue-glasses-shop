@@ -7,5 +7,5 @@
       "@helpers/*": ["./src/app/styles/helpers/*"]
     }
   },
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["node_modules", "dist", "build"]
 }

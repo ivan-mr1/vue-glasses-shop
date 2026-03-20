@@ -2,20 +2,28 @@
 import Social from '@/shared/ui/social/Social.vue';
 
 defineProps({
-  list: Array,
+  list: {
+    type: Array,
+    default: () => [],
+  },
+  isOpen: {
+    type: Boolean,
+    default: false,
+  },
 });
 </script>
 
 <template>
-  <nav class="header__menu menu" data-header-menu>
+  <nav class="header__menu menu" :class="{ 'is-active': isOpen }" data-header-menu>
     <ul class="menu__list">
       <li v-for="item in list" :key="item.name" class="menu__item">
         <a
           :href="item.href ? `#${item.href}` : '#'"
           :data-goto="item.goto ? `.${item.goto}` : null"
           class="menu__link hover-link"
-          >{{ item.name }}</a
         >
+          {{ item.name }}
+        </a>
       </li>
     </ul>
     <Social base-class="header__soc1al visible-mobile" />
