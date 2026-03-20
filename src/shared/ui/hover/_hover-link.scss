@@ -1,4 +1,4 @@
-@use '../../styles/helpers/' as *;
+@use '@helpers' as *;
 
 .hover-link {
   position: relative;
@@ -26,7 +26,7 @@
   }
 }
 
-/* 
+/*
 .hover-link2 {
     //font-size: 17px;
     //background: transparent;
@@ -55,14 +55,14 @@
         transition: 0.4s ease;
         z-index: -1;
     }
-}  
+}
 .hover-link2:hover {
     color: var(--c-dark);
     transition-delay: 0.5s;
-}  
+}
 .hover-link2:hover::before {
     width: 100%;
-}  
+}
 .hover-link2:hover::after {
     height: 100%;
     transition-delay: 0.4s;
