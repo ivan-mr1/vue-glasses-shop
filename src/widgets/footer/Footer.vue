@@ -1,15 +1,17 @@
 <script setup>
 import Contacts from '@/shared/ui/contacts/Contacts.vue';
+import headerBlock from '@/shared/ui/header-block';
 import Social from '@/shared/ui/social/Social.vue';
 </script>
 
 <template>
   <footer id="footer" class="footer">
     <div class="footer__container">
-      <div class="footer__header">
-        <h2 class="footer__title">Будемо раді вашому зверненню</h2>
-        <div class="footer__text">Звʼяжіться з нами будь-яким зручним для вас способом:</div>
-      </div>
+      <headerBlock
+        custom-class="footer__header"
+        title="Будемо раді вашому зверненню"
+        text="Звʼяжіться з нами будь-яким зручним для вас способом:"
+      />
       <div class="footer__wrapper">
         <Social base-class="footer__soc1al" />
         <Contacts
@@ -32,24 +34,9 @@ import Social from '@/shared/ui/social/Social.vue';
   @include adaptive-clamp('padding-bottom', 70, 25);
 
   &__header {
-    text-align: center;
-
     &:not(:last-child) {
       margin-bottom: rem(25);
     }
-  }
-
-  &__title {
-    font-size: rem(24);
-    font-weight: 600;
-
-    &:not(:last-child) {
-      margin-bottom: rem(10);
-    }
-  }
-
-  &__text {
-    font-size: rem(18);
   }
 
   &__wrapper {

@@ -1,5 +1,6 @@
 <script setup>
-import Scroller from '@/shared/ui/scroller/Scroller.vue';
+import HeaderBlock from '@/shared/ui/header-block';
+import Scroller from '@/shared/ui/scroller';
 
 const scrollerPartners = [
   'CHANCE',
@@ -20,9 +21,11 @@ const scrollerPartners = [
 <template>
   <section class="page__partners partners" aria-labelledby="partners-title">
     <div class="partners__container">
-      <div class="partners__header-block header-block">
-        <h2 class="header-block__title" id="partners-title">Популярні бренди</h2>
-      </div>
+      <HeaderBlock
+        custom-class="partners__header-block"
+        id="partners-title"
+        title="Популярні бренди"
+      />
       <Scroller
         :items="scrollerPartners"
         direction="right"

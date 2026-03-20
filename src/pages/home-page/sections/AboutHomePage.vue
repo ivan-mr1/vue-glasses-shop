@@ -1,5 +1,5 @@
 <script setup>
-import Scroller from '@/shared/ui/scroller/Scroller.vue';
+import Scroller from '@/shared/ui/scroller';
 
 const scrollerItems = [
   'Доставка по Україні.',
@@ -48,7 +48,6 @@ const scrollerItems = [
 @use '@helpers' as *;
 
 .about {
-  height: 1000px;
   @include adaptive-clamp('padding-bottom', 40, 20);
 
   &__container {

@@ -1,10 +1,10 @@
-<script setup></script>
+<script setup>
+import HeaderBlock from '@/shared/ui/header-block';
+</script>
 <template>
   <section id="products" class="page__products products" aria-labelledby="products-title">
     <div class="products__container">
-      <div class="products__header header-block">
-        <h1 class="header-block__title products__title" id="products-title">Каталог</h1>
-      </div>
+      <HeaderBlock custom-class="products__header" id="products-title" title="Каталог" />
       <ul class="products__list" data-products-catalog></ul>
       <div class="pagination__container">
         <div data-pagination class="pagination hidden">
