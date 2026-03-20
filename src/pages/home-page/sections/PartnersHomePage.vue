@@ -1,27 +1,34 @@
-<script setup></script>
+<script setup>
+import Scroller from '@/shared/ui/scroller/Scroller.vue';
+
+const scrollerPartners = [
+  'CHANCE',
+  'DACCHI',
+  'GUCHINI',
+  'TEMPO',
+  'LORIS',
+  'ALANIE',
+  'BELLEESSA',
+  'AGIO',
+  'AGIO',
+  'CORRADO',
+  'GOOD LUCK',
+  'SALVO',
+  'CRISTAL',
+];
+</script>
 <template>
   <section class="page__partners partners" aria-labelledby="partners-title">
     <div class="partners__container">
       <div class="partners__header-block header-block">
         <h2 class="header-block__title" id="partners-title">Популярні бренди</h2>
       </div>
-      <div class="scroller partners__scroller" data-direction="right" data-speed="fast">
-        <ul class="scroller__inner">
-          <li class="scroller__item brand">CHANCE</li>
-          <li class="scroller__item brand">DACCHI</li>
-          <li class="scroller__item brand">GUCHINI</li>
-          <li class="scroller__item brand">TEMPO</li>
-          <li class="scroller__item brand">LORIS</li>
-          <li class="scroller__item brand">ALANIE</li>
-          <li class="scroller__item brand">BELLEESSA</li>
-          <li class="scroller__item brand">AGIO</li>
-          <li class="scroller__item brand">SAFILO</li>
-          <li class="scroller__item brand">CORRADO</li>
-          <li class="scroller__item brand">GOOD LUCK</li>
-          <li class="scroller__item brand">SALVO</li>
-          <li class="scroller__item brand">CRISTAL</li>
-        </ul>
-      </div>
+      <Scroller
+        :items="scrollerPartners"
+        direction="right"
+        speed="fast"
+        class="partners__scroller"
+      />
     </div>
   </section>
 </template>

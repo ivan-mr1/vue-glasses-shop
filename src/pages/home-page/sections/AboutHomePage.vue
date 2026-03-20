@@ -1,18 +1,17 @@
-<script setup></script>
+<script setup>
+import Scroller from '@/shared/ui/scroller/Scroller.vue';
+
+const scrollerItems = [
+  'Доставка по Україні.',
+  'Доставка по Європі.',
+  'Гарантійний сервіс.',
+  'Безкоштовна консультація.',
+];
+</script>
 <template>
   <section id="about" class="page__about about" aria-labelledby="about-title">
-    <div class="scroller descr__scroller" data-direction="left" data-speed="slow">
-      <ul class="scroller__inner">
-        <li class="scroller__item">Доставка по Україні.</li>
-        <li class="scroller__item">Доставка по Європі.</li>
-        <li class="scroller__item">Гарантійний сервіс.</li>
-        <li class="scroller__item">Безкоштовна консультація.</li>
-        <li class="scroller__item">Доставка по Україні.</li>
-        <li class="scroller__item">Доставка по Європі.</li>
-        <li class="scroller__item">Гарантійний сервіс.</li>
-        <li class="scroller__item">Безкоштовна консультація.</li>
-      </ul>
-    </div>
+    <Scroller :items="scrollerItems" direction="left" speed="slow" class="descr__scroller" />
+
     <div class="about__container">
       <div class="about__wrapper">
         <div class="ibg about__image">
