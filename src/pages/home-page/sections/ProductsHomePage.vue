@@ -1,12 +1,14 @@
 <script setup>
 import HeaderBlock from '@/shared/ui/header-block';
 import ProductCatalog from '@/widgets/product-catalog/ui';
+import ProductsFilter from './ProductsFilter.vue';
 </script>
 <template>
   <section id="products" class="page__products products" aria-labelledby="products-title">
     <div class="products__container">
       <HeaderBlock custom-class="products__header" id="products-title" title="Каталог" />
-      <ProductCatalog />
+      <ProductsFilter />
+      <ProductCatalog items="" />
     </div>
   </section>
 </template>

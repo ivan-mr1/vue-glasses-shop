@@ -47,7 +47,7 @@ const isLink = computed(() => !!props.href);
   text-decoration: none;
 
   &:active:not(.is-disabled) {
-    scale: 1.05;
+    scale: 0.95;
   }
 
   @include hover {

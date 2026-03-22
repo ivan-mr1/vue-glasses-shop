@@ -1,5 +1,10 @@
 <script setup>
 import ProductCard from '@/entities/product/ui';
+
+defineProps({
+  items: Array,
+});
+
 const onClickAdd = () => {
   alert('add');
 };

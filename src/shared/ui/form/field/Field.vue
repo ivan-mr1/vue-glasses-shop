@@ -11,6 +11,7 @@ defineEmits(['update:modelValue']);
 
 <template>
   <div class="field">
+    <label :for="id" class="field__label">{{ title }}</label>
     <input
       :id="id"
       :type="type"
@@ -20,7 +21,6 @@ defineEmits(['update:modelValue']);
       autocomplete="off"
       @input="$emit('update:modelValue', $event.target.value)"
     />
-    <label :for="id" class="field__label">{{ title }}</label>
   </div>
 </template>
 
@@ -28,58 +28,60 @@ defineEmits(['update:modelValue']);
 @use '@helpers' as *;
 
 .field {
-  --field-height: 58px;
-  --field-padding-x: 16px;
+  --field-color-label: #141216;
+  --field-color-label-active: #9333ea;
   --field-color-border: #c7c7c7;
   --field-color-active: #9333ea;
-  --field-color-label: #8e27ee;
-  --field-transition: 0.2s ease-in-out;
+  --field-color-focus-bcg: #f5f5f5;
 
   position: relative;
-  display: flex;
-  flex-direction: column;
 
-  &__input {
-    width: 100%;
-    height: var(--field-height);
-    padding: 18px var(--field-padding-x) 6px;
-    background-color: transparent;
-    border: 1px solid var(--field-color-border);
-    border-radius: 8px;
-    font-size: 16px;
-    transition: var(--field-transition);
-
-    &:focus {
-      outline: none;
-      border-color: var(--field-color-active);
-      background-color: #f5f5f5;
-    }
-
-    &[type='search'] {
-      background-image: url('./icon-search_black.svg');
-      background-repeat: no-repeat;
-      background-position: calc(100% - var(--field-padding-x)) 50%;
-      background-size: 16px;
-      padding-right: 40px;
-    }
+  &:has(.field__input:not(:placeholder-shown)) .field__label {
+    // обращаемся к label только когда плейсхолдер не должен отображаться
+    color: var(--field-color-label-active);
+    scale: 0.7;
+    translate: -30px -45px; // надо подбирать
   }
 
   &__label {
     position: absolute;
-    left: var(--field-padding-x);
     top: 50%;
-    transform: translateY(-50%);
+    left: 17px; //  как в макете
     color: var(--field-color-label);
-    pointer-events: none;
-    transition: var(--field-transition);
-    transform-origin: left top;
+    translate: 0 -50%;
   }
 
-  .field__input:focus + &__label,
-  .field__input:not(:placeholder-shown) + &__label {
-    top: 8px;
-    transform: translateY(0) scale(0.75);
-    color: var(--field-color-active);
+  &__input {
+    --field-input-padding-x: 16px; //  как в макете
+    --field-search-input-icon-size: 16px;
+
+    width: 100%;
+    height: 50px;
+    padding-inline: var(--field-input-padding-x);
+    background-color: transparent;
+    border: 1px solid var(--field-color-border);
+    border-radius: 8px;
+
+    &:hover,
+    &:focus {
+      color: var(--field-color-active);
+    }
+
+    &:focus {
+      background-color: var(--field-color-focus-bcg);
+      outline: none;
+    }
+
+    &[type='search'] {
+      &:placeholder-shown {
+        //  когда плейсхолдер на инпуте должен отображаться, отображаем иконку
+        padding-right: calc(var(--field-input-padding-x) * 2 + var(--field-search-input-icon-size));
+        background-image: url('./icon-search_black.svg');
+        background-position: calc(100% - var(--field-input-padding-x)) 50%;
+        background-size: var(--field-search-input-icon-size);
+        background-repeat: no-repeat;
+      }
+    }
   }
 }
 </style>
