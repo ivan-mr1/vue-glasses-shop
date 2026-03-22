@@ -52,7 +52,7 @@ defineProps({
           <p>{{ description }}</p>
         </div>
 
-        <div class="product__article">Артикул: {{ code }}</div>
+        <div class="product__code">Код: {{ code }}</div>
 
         <div class="product__price product-price">
           <div class="product__price-current">{{ formatPrice(price) }} грн</div>
@@ -159,7 +159,7 @@ defineProps({
   }
 
   &__descr,
-  &__article {
+  &__code {
     font-size: 14px;
     color: #666666;
   }
