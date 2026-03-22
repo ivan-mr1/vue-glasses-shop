@@ -9,12 +9,12 @@ import ProductsHomePage from './sections/ProductsHomePage.vue';
 import ScrollUpButton from '@/shared/ui/ScrollUpButton';
 import Drawer from '@/widgets/drawer';
 
-const isDrawerOpen = ref(true);
+const isDrawerOpen = ref(false);
 </script>
 
 <template>
   <div class="wrapper">
-    <Drawer :is-active="isDrawerOpen" :total-price="4500" :discount="1250" />
+    <Drawer :is-active="isDrawerOpen" :total-price="0" :discount="0" />
     <Header />
     <main class="page">
       <HeroHomePage />

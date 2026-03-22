@@ -3,8 +3,8 @@ import Button from '@/shared/ui/form/button';
 import { formatPrice } from '@/shared/utils/formatPrice';
 
 defineProps({
-  totalPrice: { type: Number, default: 10 },
-  discount: { type: Number, default: 10 },
+  totalPrice: { type: Number, default: 0 },
+  discount: { type: Number, default: 0 },
   isSubmitting: { type: Boolean, default: false }, // для лоадера на кнопке
 });
 </script>
@@ -40,7 +40,7 @@ defineProps({
   flex-direction: column;
   gap: 1.5rem;
   padding-top: 1.5rem;
-  border-top: 1px dashed var(--color-border, #eeeeee);
+  border-top: 1px dashed var(--color-orange, #eeeeee);
   background-color: var(--color-white);
 
   &__info {
