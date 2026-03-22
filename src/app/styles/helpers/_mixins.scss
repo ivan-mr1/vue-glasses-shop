@@ -118,3 +118,11 @@
     @include square(var(--size));
   }
 }
+
+@mixin line-clamp($lines: 2) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;
+  line-clamp: $lines;
+}

@@ -1,5 +1,6 @@
 <script setup>
 import { formatPrice } from '@/shared/utils/formatPrice';
+
 defineProps({
   title: String,
   imageUrl: String,
@@ -9,58 +10,51 @@ defineProps({
 </script>
 
 <template>
-  <article class="drawer__product product-drawer">
-    <div class="product-drawer__image">
-      <img
-        :src="imageUrl"
-        alt=""
-        width="73"
-        height="50"
-        class="product-drawer__img"
-        loading="lazy"
-      />
-    </div>
-
-    <div class="product-drawer__wrapper">
-      <h3 class="product-drawer__title">{{ title }}</h3>
-
-      <div class="product-drawer__inner">
-        <div class="product-drawer__descr">
-          <div class="product-drawer__code">Код: {{ code }}</div>
-          <div class="product-drawer__price">{{ formatPrice(price) }} грн</div>
-        </div>
-        <button
-          type="button"
-          class="product-drawer__close"
-          aria-label="Delete product"
-          title="Delete product"
-        >
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 40 40"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M30 10L10 30"
-              stroke="#181C29"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M10 10L30 30"
-              stroke="#181C29"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </button>
+  <li class="drawer__item">
+    <article class="product-drawer">
+      <div class="product-drawer__image">
+        <img
+          :src="imageUrl"
+          :alt="title"
+          width="75"
+          height="50"
+          class="product-drawer__img"
+          loading="lazy"
+        />
       </div>
-    </div>
-  </article>
+
+      <div class="product-drawer__content">
+        <div class="product-drawer__header">
+          <h3 class="product-drawer__title">{{ title }}</h3>
+
+          <button type="button" class="product-drawer__close" aria-label="Видалити товар">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 40 40"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M30 10L10 30M10 10L30 30"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <div class="product-drawer__footer">
+          <div class="product-drawer__info">
+            <span class="product-drawer__code">Артикул: {{ code }}</span>
+            <span class="product-drawer__price">{{ formatPrice(price) }} грн</span>
+          </div>
+        </div>
+      </div>
+    </article>
+  </li>
 </template>
 
 <style scoped lang="scss">
@@ -69,39 +63,77 @@ defineProps({
 .product-drawer {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 12px;
   border: 1px solid var(--color-orange);
-  padding: 2px;
-  border-radius: 5px;
-  overflow: hidden;
+  padding: 8px;
+  border-radius: 12px;
+  background-color: var(--color-white);
+
   &__image {
-    flex: 0 1 25%;
-  }
-
-  &__wrapper {
-    flex: 0 1 75%;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-  }
-
-  &__inner {
+    flex: 0 0 73px;
+    height: 50px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 4px;
+
+    img {
+      max-width: 100%;
+      object-fit: contain;
+    }
   }
 
-  &__descr {
-    font-size: 14px;
+  &__content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
   }
 
   &__title {
+    font-size: 14px;
     font-weight: 600;
+    line-height: 1.2;
+
+    @include line-clamp(2);
+  }
+
+  &__close {
+    flex-shrink: 0;
+    color: #b0b0b0;
+    transition:
+      color 0.3s ease,
+      transform 0.2s ease;
+
+    @include hover {
+      color: #ff4d4d;
+      transform: scale(1.1);
+    }
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 13px;
+  }
+
+  &__code {
+    color: #888;
   }
 
   &__price {
-    font-weight: 600;
-    font-style: italic;
+    font-weight: 700;
+    color: var(--color-black);
   }
 }
 </style>

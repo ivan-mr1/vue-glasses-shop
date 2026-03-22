@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from 'vue';
 import Footer from '@/widgets/footer';
 import Header from '@/widgets/header';
 import HeroHomePage from './sections/HeroHomePage.vue';
@@ -7,11 +8,13 @@ import PartnersHomePage from './sections/PartnersHomePage.vue';
 import ProductsHomePage from './sections/ProductsHomePage.vue';
 import ScrollUpButton from '@/shared/ui/ScrollUpButton';
 import Drawer from '@/widgets/drawer';
+
+const isDrawerOpen = ref(true);
 </script>
 
 <template>
   <div class="wrapper">
-    <Drawer />
+    <Drawer :is-active="isDrawerOpen" :total-price="4500" :discount="1250" />
     <Header />
     <main class="page">
       <HeroHomePage />
