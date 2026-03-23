@@ -3,7 +3,7 @@ defineProps({
   title: String,
   id: { type: String, required: true },
   type: { type: String, default: 'text' },
-  modelValue: String,
+  onChangeSearchInput: Function,
 });
 
 defineEmits(['update:modelValue']);
@@ -15,11 +15,10 @@ defineEmits(['update:modelValue']);
     <input
       :id="id"
       :type="type"
-      :value="modelValue"
+      @input="onChangeSearchInput"
       class="field__input"
       placeholder=" "
       autocomplete="off"
-      @input="$emit('update:modelValue', $event.target.value)"
     />
   </div>
 </template>
@@ -40,19 +39,19 @@ defineEmits(['update:modelValue']);
     // обращаемся к label только когда плейсхолдер не должен отображаться
     color: var(--field-color-label-active);
     scale: 0.7;
-    translate: -30px -45px; // надо подбирать
+    translate: -30px -45px;
   }
 
   &__label {
     position: absolute;
     top: 50%;
-    left: 17px; //  как в макете
+    left: 17px;
     color: var(--field-color-label);
     translate: 0 -50%;
   }
 
   &__input {
-    --field-input-padding-x: 16px; //  как в макете
+    --field-input-padding-x: 16px;
     --field-search-input-icon-size: 16px;
 
     width: 100%;
@@ -74,7 +73,6 @@ defineEmits(['update:modelValue']);
 
     &[type='search'] {
       &:placeholder-shown {
-        //  когда плейсхолдер на инпуте должен отображаться, отображаем иконку
         padding-right: calc(var(--field-input-padding-x) * 2 + var(--field-search-input-icon-size));
         background-image: url('./icon-search_black.svg');
         background-position: calc(100% - var(--field-input-padding-x)) 50%;
@@ -85,20 +83,3 @@ defineEmits(['update:modelValue']);
   }
 }
 </style>
-
-<!--
-<template>
-  <Field
-    id="new-task"
-    title="New task title"
-    v-model="newTaskText"
-  />
-
-  <Field
-    id="search-task"
-    title="Search task"
-    type="search"
-    v-model="searchText"
-  />
-</template>
--->
