@@ -3,6 +3,7 @@ import Button from '@/shared/ui/form/button';
 import { formatPrice } from '@/shared/utils/formatPrice';
 
 defineProps({
+  id: Number,
   title: String,
   imageUrl: String,
   description: String,
