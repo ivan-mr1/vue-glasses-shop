@@ -2,7 +2,7 @@
 
 - Deploy: [link]()
 
-- Technologies: HTML, SCSS, Vue.js, Vite, Eslint, Stylelint, Prettier
+- Technologies: HTML, SCSS, Vue.js, Axios, Vite, Eslint, Stylelint, Prettier
 
 - Google Page Speed:
   <img alt="image" src="" />
