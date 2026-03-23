@@ -1,14 +1,16 @@
 <script setup>
+import { inject } from 'vue';
 import HeaderBlock from '@/shared/ui/header-block';
 import ProductCatalog from '@/widgets/product-catalog/ui';
 import ProductsFilter from './ProductsFilter.vue';
+const items = inject('items');
 </script>
 <template>
   <section id="products" class="page__products products" aria-labelledby="products-title">
     <div class="products__container">
       <HeaderBlock custom-class="products__header" id="products-title" title="Каталог" />
       <ProductsFilter />
-      <ProductCatalog items="" />
+      <ProductCatalog :items="items" />
     </div>
   </section>
 </template>

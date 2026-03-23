@@ -39,6 +39,10 @@ __screenshots__/
 # Vite
 *.timestamp-*-*.mjs
 
+#productList
+products.json
+items.js
+
 #env
 .env
 .env.local
