@@ -15,42 +15,12 @@ const onClickFavorite = () => {
 <template>
   <ul class="products__list" data-products-catalog>
     <ProductCard
-      title="glasses model 1"
-      image-url="/img/products/glasses/1.webp"
-      code="01-5"
-      :price="22200.22"
-      :isAdded="false"
-      is-favorite=""
-      :onClickFavorite="onClickFavorite"
-      :onClickAdd="onClickAdd"
-    />
-    <ProductCard
-      title="glasses model 1"
-      image-url="/img/products/glasses/1.webp"
-      code="01-5"
-      :price="22200.22"
-      :isAdded="false"
-      is-favorite=""
-      :onClickFavorite="onClickFavorite"
-      :onClickAdd="onClickAdd"
-    />
-    <ProductCard
-      title="glasses model 1"
-      image-url="/img/products/glasses/1.webp"
-      code="01-5"
-      :price="22200.22"
-      :isAdded="false"
-      is-favorite=""
-      :onClickFavorite="onClickFavorite"
-      :onClickAdd="onClickAdd"
-    />
-    <ProductCard
-      title="glasses model 1"
-      image-url="/img/products/glasses/1.webp"
-      code="01-5"
-      :price="22200.22"
-      :isAdded="false"
-      is-favorite=""
+      v-for="item in items"
+      :key="item.id"
+      :title="item.title"
+      :image-url="item.imageUrl"
+      :code="item.code"
+      :price="item.price"
       :onClickFavorite="onClickFavorite"
       :onClickAdd="onClickAdd"
     />

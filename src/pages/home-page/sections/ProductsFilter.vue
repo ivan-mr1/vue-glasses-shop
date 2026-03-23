@@ -1,13 +1,21 @@
 <script setup>
 import Field from '@/shared/ui/form/field/Field.vue';
+import { inject } from 'vue';
+const onChangeSelect = inject('onChangeSelect');
+const onChangeSearchInput = inject('onChangeSearchInput');
 </script>
 <template>
   <div class="products__filter">
-    <Field id="search-product" title="Search product" type="search" v-model="searchText" />
-    <select name="" id="">
-      <option value="ціна вища">ціна вища</option>
-      <option value="ціна нижче">ціна нижче</option>
-      <option value="за назвою">за назвою</option>
+    <Field
+      id="search-product"
+      title="Search product"
+      type="search"
+      :onChangeSearchInput="onChangeSearchInput"
+    />
+    <select @change="onChangeSelect">
+      <option value="-price">ціна вища</option>
+      <option value="price">ціна нижче</option>
+      <option value="name">за назвою</option>
     </select>
   </div>
 </template>
