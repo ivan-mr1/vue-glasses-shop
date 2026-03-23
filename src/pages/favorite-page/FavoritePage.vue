@@ -1,6 +1,10 @@
 <script setup>
-import Footer from '@/widgets/footer';
 import Header from '@/widgets/header';
+import Footer from '@/widgets/footer';
+import ScrollUpButton from '@/shared/ui/ScrollUpButton/ScrollUpButton.vue';
+import { usePageNavigation } from '@/shared/lib/usePageNavigation';
+
+usePageNavigation();
 </script>
 
 <template>
@@ -8,6 +12,7 @@ import Header from '@/widgets/header';
     <Header />
     <main class="page"></main>
     <Footer />
+    <ScrollUpButton />
   </div>
 </template>
 

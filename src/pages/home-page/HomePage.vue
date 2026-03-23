@@ -1,14 +1,16 @@
 <script setup>
 import { ref } from 'vue';
-import Footer from '@/widgets/footer';
+import Drawer from '@/widgets/drawer';
 import Header from '@/widgets/header';
 import HeroHomePage from './sections/HeroHomePage.vue';
 import AboutHomePage from './sections/AboutHomePage.vue';
 import PartnersHomePage from './sections/PartnersHomePage.vue';
 import ProductsHomePage from './sections/ProductsHomePage.vue';
+import Footer from '@/widgets/footer';
 import ScrollUpButton from '@/shared/ui/ScrollUpButton';
-import Drawer from '@/widgets/drawer';
+import { usePageNavigation } from '@/shared/lib/usePageNavigation';
 
+usePageNavigation();
 const isDrawerOpen = ref(false);
 </script>
 

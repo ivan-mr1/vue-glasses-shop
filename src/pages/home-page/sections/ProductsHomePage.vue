@@ -1,7 +1,7 @@
 <script setup>
 import { inject } from 'vue';
 import HeaderBlock from '@/shared/ui/header-block';
-import ProductCatalog from '@/widgets/product-catalog/ui';
+import ProductCatalog from '@/widgets/product-catalog';
 import ProductsFilter from '@/features/filter-products';
 const items = inject('items');
 </script>

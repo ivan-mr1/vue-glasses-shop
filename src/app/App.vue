@@ -1,10 +1,10 @@
 <script setup>
+import Home from '@/pages/home-page';
+import './styles/main.scss';
+/* ======= */
 import { onMounted, provide, reactive, ref, watch } from 'vue';
 import axios from 'axios';
 import { BASE_URL, PRODUCTS_ENDPOINT, FAVORITES_ENDPOINT } from '@/shared/api/config';
-import { usePageNavigation } from '@/shared/hooks/usePageNavigation';
-import Home from '@/pages/home-page';
-import './styles/main.scss';
 
 const items = ref([]);
 
@@ -75,11 +75,12 @@ onMounted(async () => {
 
 watch(filters, fetchItems);
 
-usePageNavigation();
 provide('items', items);
 provide('onChangeSelect', onChangeSelect);
 provide('onChangeSearchInput', onChangeSearchInput);
 provide('addToFavorite', addToFavorite);
+
+/* ======= */
 </script>
 
 <template>
