@@ -2,7 +2,7 @@
 import { inject } from 'vue';
 import HeaderBlock from '@/shared/ui/header-block';
 import ProductCatalog from '@/widgets/product-catalog/ui';
-import ProductsFilter from './ProductsFilter.vue';
+import ProductsFilter from '@/features/filter-products';
 const items = inject('items');
 </script>
 <template>
