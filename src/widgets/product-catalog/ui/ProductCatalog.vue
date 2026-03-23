@@ -1,4 +1,5 @@
 <script setup>
+import { inject } from 'vue';
 import ProductCard from '@/entities/product/ui';
 
 defineProps({
@@ -8,21 +9,22 @@ defineProps({
 const onClickAdd = () => {
   alert('add');
 };
-const onClickFavorite = () => {
-  alert('fav');
-};
+
+const addToFavorite = inject('addToFavorite');
 </script>
 <template>
   <ul class="products__list" data-products-catalog>
     <ProductCard
       v-for="item in items"
       :key="item.id"
+      :id="item.id"
       :title="item.title"
       :image-url="item.imageUrl"
       :code="item.code"
       :price="item.price"
-      :onClickFavorite="onClickFavorite"
+      :onClickFavorite="() => addToFavorite(item)"
       :onClickAdd="onClickAdd"
+      :isFavorite="item.isFavorite"
     />
   </ul>
 </template>
