@@ -43,8 +43,22 @@ const fetchFavorites = async () => {
 };
 
 const addToFavorite = async (item) => {
-  item.isFavorite = !item.isFavorite;
-  console.log(item);
+  try {
+    if (!item.isFavorite) {
+      const obj = {
+        parentId: item.id,
+      };
+      item.isFavorite = true;
+      const { data } = await axios.post(`${BASE_URL}${FAVORITES_ENDPOINT}`, obj);
+      item.favoriteId = data.id;
+    } else {
+      item.isFavorite = false;
+      await axios.delete(`${BASE_URL}${FAVORITES_ENDPOINT}/${item.favoriteId}`);
+      item.favoriteId = null;
+    }
+  } catch (err) {
+    console.error('Error loading data:', err);
+  }
 };
 
 const fetchItems = async () => {
@@ -61,6 +75,7 @@ const fetchItems = async () => {
     items.value = data.map((obj) => ({
       ...obj,
       isFavorite: false,
+      favoriteId: null,
       isAdded: false,
     }));
   } catch (err) {
