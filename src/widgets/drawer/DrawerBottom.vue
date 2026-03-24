@@ -1,4 +1,5 @@
 <script setup>
+import { inject } from 'vue';
 import Button from '@/shared/ui/form/button';
 import { formatPrice } from '@/shared/utils/formatPrice';
 
@@ -7,6 +8,7 @@ defineProps({
   discount: { type: Number, default: 0 },
   isSubmitting: { type: Boolean, default: false }, // для лоадера на кнопке
 });
+const totalPriceCart = inject('totalPriceCart');
 </script>
 
 <template>
@@ -14,7 +16,7 @@ defineProps({
     <div class="bottom-drawer__info">
       <div class="bottom-drawer__item">
         <span class="bottom-drawer__label">Усього:</span>
-        <span class="bottom-drawer__value">{{ formatPrice(totalPrice) }} грн</span>
+        <span class="bottom-drawer__value">{{ formatPrice(totalPriceCart) }} грн</span>
       </div>
 
       <div class="bottom-drawer__item" v-if="discount > 0">

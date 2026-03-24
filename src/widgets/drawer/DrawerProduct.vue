@@ -2,11 +2,14 @@
 import { formatPrice } from '@/shared/utils/formatPrice';
 
 defineProps({
+  id: Number,
   title: String,
   imageUrl: String,
   code: String,
   price: Number,
 });
+
+const emit = defineEmits('onClickRemove');
 </script>
 
 <template>
@@ -27,10 +30,15 @@ defineProps({
         <div class="product-drawer__header">
           <h3 class="product-drawer__title">{{ title }}</h3>
 
-          <button type="button" class="product-drawer__close" aria-label="Видалити товар">
+          <button
+            @click="emit('onClickRemove')"
+            type="button"
+            class="product-drawer__close"
+            aria-label="Видалити товар"
+          >
             <svg
-              width="20"
-              height="20"
+              width="25"
+              height="25"
               viewBox="0 0 40 40"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -48,7 +56,7 @@ defineProps({
 
         <div class="product-drawer__footer">
           <div class="product-drawer__info">
-            <span class="product-drawer__code">Артикул: {{ code }}</span>
+            <span class="product-drawer__code">Код: {{ code }}</span>
             <span class="product-drawer__price">{{ formatPrice(price) }} грн</span>
           </div>
         </div>
@@ -109,14 +117,13 @@ defineProps({
 
   &__close {
     flex-shrink: 0;
-    color: #b0b0b0;
+    color: #6a6565;
     transition:
       color 0.3s ease,
       transform 0.2s ease;
 
     @include hover {
-      color: #ff4d4d;
-      transform: scale(1.1);
+      color: var(--color-orange);
     }
   }
 
@@ -128,7 +135,7 @@ defineProps({
   }
 
   &__code {
-    color: #888;
+    color: #6a6565;
   }
 
   &__price {

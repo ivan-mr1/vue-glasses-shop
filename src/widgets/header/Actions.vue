@@ -1,7 +1,13 @@
-<script setup></script>
+<script setup>
+import CartButton from '@/features/cart';
+import FavoriteButton from '@/features/favorite';
+</script>
 
 <template>
-  <div class="header__actions"></div>
+  <div class="header__actions">
+    <CartButton :total-price="2000" />
+    <FavoriteButton />
+  </div>
 </template>
 
 <style scoped lang="scss">

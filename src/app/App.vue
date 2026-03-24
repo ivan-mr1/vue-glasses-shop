@@ -1,17 +1,50 @@
 <script setup>
 import Home from '@/pages/home-page';
+import Drawer from '@/widgets/drawer/Drawer.vue';
 import './styles/main.scss';
 /* ======= вынести из App.vue */
-import { onMounted, provide, reactive, ref, watch } from 'vue';
+import { computed, onMounted, provide, reactive, ref, watch } from 'vue';
 import axios from 'axios';
 import { BASE_URL, PRODUCTS_ENDPOINT, FAVORITES_ENDPOINT } from '@/shared/api/config';
 
-const items = ref([]);
+/* ===== drawer */
+const isDrawerOpen = ref(false);
 
+const openDrawer = () => {
+  isDrawerOpen.value = true;
+};
+
+const closeDrawer = () => {
+  isDrawerOpen.value = false;
+};
+/* ===== */
+
+const items = ref([]);
+const cart = ref([]);
 const filters = reactive({
   sortBy: 'title',
   searchQuery: '',
 });
+
+const totalPriceCart = computed(() => cart.value.reduce((acc, item) => acc + item.price, 0));
+
+const addToCart = (item) => {
+  cart.value.push(item);
+  item.isAdded = true;
+};
+
+const removeFromCart = (item) => {
+  cart.value.splice(cart.value.indexOf(item), 1);
+  item.isAdded = false;
+};
+
+const onClickAddCart = (item) => {
+  if (!item.isAdded) {
+    addToCart(item);
+  } else {
+    removeFromCart(item);
+  }
+};
 
 const onChangeSelect = (event) => {
   filters.sortBy = event.target.value;
@@ -89,15 +122,17 @@ onMounted(async () => {
 });
 
 watch(filters, fetchItems);
-
 provide('items', items);
 provide('onChangeSelect', onChangeSelect);
 provide('onChangeSearchInput', onChangeSearchInput);
 provide('addToFavorite', addToFavorite);
-
+provide('onClickAddCart', onClickAddCart);
+provide('cart', { cart, openDrawer, closeDrawer, addToCart, removeFromCart });
+provide('totalPriceCart', totalPriceCart);
 /* ======= вынести из App.vue */
 </script>
 
 <template>
   <Home />
+  <Drawer :is-active="isDrawerOpen" :total-price="0" :discount="0" />
 </template>

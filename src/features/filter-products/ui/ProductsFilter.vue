@@ -12,7 +12,7 @@ const onChangeSearchInput = inject('onChangeSearchInput');
       type="search"
       :onChangeSearchInput="onChangeSearchInput"
     />
-    <select @change="onChangeSelect">
+    <select class="products__select" @change="onChangeSelect">
       <option value="-price">ціна вища</option>
       <option value="price">ціна нижче</option>
       <option value="name">за назвою</option>
@@ -22,11 +22,19 @@ const onChangeSearchInput = inject('onChangeSearchInput');
 <style scoped lang="scss">
 @use '@helpers' as *;
 
-.products__filter {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 1rem;
-  margin-bottom: 20px;
+.products {
+  &__filter {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-bottom: 20px;
+  }
+  &__select {
+    border-radius: 8px;
+    padding-block: 16px;
+    padding-inline: 10px;
+    font-size: 16px;
+  }
 }
 </style>

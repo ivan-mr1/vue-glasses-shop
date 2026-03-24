@@ -1,12 +1,21 @@
 <script setup>
+import { inject } from 'vue';
 import HeaderBlock from '@/shared/ui/header-block';
+
+const { closeDrawer } = inject('cart');
 </script>
 
 <template>
   <div class="drawer__head">
     <HeaderBlock title="Кошик" />
 
-    <button type="button" class="drawer__close" aria-label="Close drawer" title="Close drawer">
+    <button
+      type="button"
+      class="drawer__close"
+      aria-label="Close drawer"
+      title="Close drawer"
+      @click="() => closeDrawer()"
+    >
       <svg
         width="40"
         height="40"

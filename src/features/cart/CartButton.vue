@@ -1,11 +1,19 @@
+<script setup>
+import { inject } from 'vue';
+
+const { openDrawer } = inject('cart');
+const totalPriceCart = inject('totalPriceCart');
+</script>
+
 <template>
-  <a
-    href="cart.html"
-    class="header__action header__cart counter-icon"
+  <button
+    type="button"
+    class="header__action"
     aria-label="Open cart"
     title="Open cart"
+    @click="() => openDrawer()"
   >
-    <span class="counter-icon__inner">
+    <span class="counter-icon">
       <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 35 29">
         <path
           d="M26.1 19.9H7.9C5.3 19.9 3.7 18.1 3.3 16.3C3 15.2 0.7 7.1 0 4.9C-0.1 4.6 0.1 4.3 0.4 4.3H30V6.3H2.5C3.3 8.9 5 14.8 5.2 15.9C5.4 16.8 6.3 17.9 7.9 17.9H26.1V19.9Z"
@@ -25,9 +33,9 @@
           fill="#FFA501"
         ></path>
       </svg>
-      <span data-cart-counter class="counter-icon__count">0</span>
+      <span class="counter-icon__count">{{ totalPriceCart }} грн</span>
     </span>
-  </a>
+  </button>
 </template>
 
 <style scoped lang="scss">
