@@ -6,11 +6,8 @@ defineProps({
   items: Array,
 });
 
-const onClickAdd = () => {
-  alert('add');
-};
-
 const addToFavorite = inject('addToFavorite');
+const onClickAddCart = inject('onClickAddCart');
 </script>
 <template>
   <ul class="products__list" data-products-catalog>
@@ -23,8 +20,9 @@ const addToFavorite = inject('addToFavorite');
       :code="item.code"
       :price="item.price"
       :onClickFavorite="() => addToFavorite(item)"
-      :onClickAdd="onClickAdd"
+      :onClickAdd="() => onClickAddCart(item)"
       :isFavorite="item.isFavorite"
+      :is-added="item.isAdded"
     />
   </ul>
 </template>

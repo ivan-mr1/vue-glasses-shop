@@ -2,7 +2,7 @@
 import { inject } from 'vue';
 import HeaderBlock from '@/shared/ui/header-block';
 
-const { closeDrawer } = inject('drawerActions');
+const { closeDrawer } = inject('cart');
 </script>
 
 <template>

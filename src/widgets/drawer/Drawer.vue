@@ -10,7 +10,7 @@ defineProps({
   discount: { type: Number, default: 0 },
 });
 
-const { closeDrawer } = inject('drawerActions');
+const { closeDrawer } = inject('cart');
 </script>
 
 <template>

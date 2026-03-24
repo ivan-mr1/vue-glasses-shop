@@ -1,76 +1,20 @@
 <script setup>
+import { inject } from 'vue';
 import DrawerProduct from './DrawerProduct.vue';
 
-const items = [
-  {
-    id: 1,
-    title: 'glasses model 1',
-    imageUrl: '/img/products/glasses/1.webp',
-    code: '01-5',
-    price: 22200.22,
-  },
-  {
-    id: 2,
-    title: 'glasses model 2',
-    imageUrl: '/img/products/glasses/2.webp',
-    code: '01-1',
-    price: 22770.22,
-  },
-  {
-    id: 1,
-    title: 'glasses model 1',
-    imageUrl: '/img/products/glasses/1.webp',
-    code: '01-5',
-    price: 22200.22,
-  },
-  {
-    id: 2,
-    title: 'glasses model 2',
-    imageUrl: '/img/products/glasses/2.webp',
-    code: '01-1',
-    price: 22770.22,
-  },
-  {
-    id: 1,
-    title: 'glasses model 1',
-    imageUrl: '/img/products/glasses/1.webp',
-    code: '01-5',
-    price: 22200.22,
-  },
-  {
-    id: 2,
-    title: 'glasses model 2',
-    imageUrl: '/img/products/glasses/2.webp',
-    code: '01-1',
-    price: 22770.22,
-  },
-  {
-    id: 1,
-    title: 'glasses model 1',
-    imageUrl: '/img/products/glasses/1.webp',
-    code: '01-5',
-    price: 22200.22,
-  },
-  {
-    id: 2,
-    title: 'glasses model 2',
-    imageUrl: '/img/products/glasses/2.webp',
-    code: '01-1',
-    price: 22770.22,
-  },
-];
+const { cart, removeFromCart } = inject('cart');
 </script>
 
 <template>
   <ul class="drawer__list">
     <DrawerProduct
-      v-for="item in items"
+      v-for="item in cart"
       :key="item.id"
       :title="item.title"
       :image-url="item.imageUrl"
       :code="item.code"
       :price="item.price"
-      @remove="() => {}"
+      @on-click-remove="removeFromCart(item)"
     />
   </ul>
 </template>
