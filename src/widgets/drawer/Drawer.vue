@@ -24,7 +24,7 @@ const { closeDrawer } = inject('cart');
     <aside class="drawer" :class="{ 'is-active': isActive }">
       <DrawerHead />
       <DrawerList />
-      <DrawerBottom :total-price="totalPrice" :discount="discount" />
+      <DrawerBottom />
     </aside>
   </Teleport>
 </template>

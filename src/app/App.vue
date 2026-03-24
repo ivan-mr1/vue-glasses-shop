@@ -3,7 +3,7 @@ import Home from '@/pages/home-page';
 import Drawer from '@/widgets/drawer/Drawer.vue';
 import './styles/main.scss';
 /* ======= вынести из App.vue */
-import { onMounted, provide, reactive, ref, watch } from 'vue';
+import { computed, onMounted, provide, reactive, ref, watch } from 'vue';
 import axios from 'axios';
 import { BASE_URL, PRODUCTS_ENDPOINT, FAVORITES_ENDPOINT } from '@/shared/api/config';
 
@@ -21,11 +21,12 @@ const closeDrawer = () => {
 
 const items = ref([]);
 const cart = ref([]);
-
 const filters = reactive({
   sortBy: 'title',
   searchQuery: '',
 });
+
+const totalPriceCart = computed(() => cart.value.reduce((acc, item) => acc + item.price, 0));
 
 const addToCart = (item) => {
   cart.value.push(item);
@@ -127,6 +128,7 @@ provide('onChangeSearchInput', onChangeSearchInput);
 provide('addToFavorite', addToFavorite);
 provide('onClickAddCart', onClickAddCart);
 provide('cart', { cart, openDrawer, closeDrawer, addToCart, removeFromCart });
+provide('totalPriceCart', totalPriceCart);
 /* ======= вынести из App.vue */
 </script>
 

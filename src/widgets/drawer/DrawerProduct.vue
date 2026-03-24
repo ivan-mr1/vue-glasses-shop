@@ -117,13 +117,13 @@ const emit = defineEmits('onClickRemove');
 
   &__close {
     flex-shrink: 0;
-    color: #b0b0b0;
+    color: #6a6565;
     transition:
       color 0.3s ease,
       transform 0.2s ease;
 
     @include hover {
-      color: #ff4d4d;
+      color: var(--color-orange);
     }
   }
 
@@ -135,7 +135,7 @@ const emit = defineEmits('onClickRemove');
   }
 
   &__code {
-    color: #888;
+    color: #6a6565;
   }
 
   &__price {

@@ -6,7 +6,7 @@ const { cart, removeFromCart } = inject('cart');
 </script>
 
 <template>
-  <ul class="drawer__list">
+  <ul class="scroll-bar drawer__list">
     <DrawerProduct
       v-for="item in cart"
       :key="item.id"
@@ -32,22 +32,6 @@ const { cart, removeFromCart } = inject('cart');
     flex-grow: 1;
     overflow-y: auto;
     min-height: 0;
-
-    &::-webkit-scrollbar {
-      width: 4px;
-    }
-
-    &::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: var(--color-orange);
-      border-radius: 10px;
-    }
-
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-orange) transparent;
   }
 }
 </style>

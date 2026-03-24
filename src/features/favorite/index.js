@@ -1,1 +1,1 @@
-export { default } from './Favorite.vue';
+export { default } from './FavoriteButton.vue';
