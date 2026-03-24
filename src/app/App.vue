@@ -5,6 +5,21 @@ import './styles/main.scss';
 import { onMounted, provide, reactive, ref, watch } from 'vue';
 import axios from 'axios';
 import { BASE_URL, PRODUCTS_ENDPOINT, FAVORITES_ENDPOINT } from '@/shared/api/config';
+import Drawer from '@/widgets/drawer/Drawer.vue';
+
+/* ===== */
+const isDrawerOpen = ref(false);
+
+const openDrawer = () => {
+  isDrawerOpen.value = true;
+};
+
+const closeDrawer = () => {
+  isDrawerOpen.value = false;
+};
+
+provide('drawerActions', { openDrawer, closeDrawer });
+/* ===== */
 
 const items = ref([]);
 
@@ -89,15 +104,14 @@ onMounted(async () => {
 });
 
 watch(filters, fetchItems);
-
 provide('items', items);
 provide('onChangeSelect', onChangeSelect);
 provide('onChangeSearchInput', onChangeSearchInput);
 provide('addToFavorite', addToFavorite);
-
 /* ======= вынести из App.vue */
 </script>
 
 <template>
   <Home />
+  <Drawer :is-active="isDrawerOpen" :total-price="0" :discount="0" />
 </template>

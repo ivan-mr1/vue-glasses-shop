@@ -1,52 +1,29 @@
 <script setup>
-import { watch, onMounted, onUnmounted } from 'vue';
+import { inject } from 'vue';
 import DrawerHead from './DrawerHead.vue';
 import DrawerList from './DrawerList.vue';
 import DrawerBottom from './DrawerBottom.vue';
 
-const props = defineProps({
+defineProps({
   isActive: { type: Boolean, default: false },
   totalPrice: { type: Number, default: 0 },
   discount: { type: Number, default: 0 },
 });
 
-const emit = defineEmits(['close']);
-
-watch(
-  () => props.isActive,
-  (active) => {
-    if (active) {
-      document.body.style.overflow = 'hidden';
-      document.body.style.paddingRight = 'var(--scrollbar-width, 0px)';
-    } else {
-      document.body.style.overflow = '';
-      document.body.style.paddingRight = '';
-    }
-  },
-);
-
-const handleEsc = (e) => {
-  if (e.key === 'Escape' && props.isActive) emit('close');
-};
-
-onMounted(() => window.addEventListener('keydown', handleEsc));
-onUnmounted(() => {
-  window.removeEventListener('keydown', handleEsc);
-  document.body.style.overflow = '';
-});
+const { closeDrawer } = inject('drawerActions');
 </script>
 
 <template>
   <Teleport to="body">
-    <div class="drawer-overlay" :class="{ 'is-active': isActive }" @click="emit('close')"></div>
+    <div
+      class="drawer-overlay"
+      :class="{ 'is-active': isActive }"
+      @click="() => closeDrawer()"
+    ></div>
 
-    <aside class="drawer" :class="{ 'is-active': isActive }" aria-modal="true" role="dialog">
-      <DrawerHead @close="emit('close')" />
-
-      <div class="drawer__content">
-        <DrawerList />
-      </div>
-
+    <aside class="drawer" :class="{ 'is-active': isActive }">
+      <DrawerHead />
+      <DrawerList />
       <DrawerBottom :total-price="totalPrice" :discount="discount" />
     </aside>
   </Teleport>
@@ -62,7 +39,7 @@ onUnmounted(() => {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
-  z-index: 998;
+  z-index: var(--z-body-after);
 
   opacity: 0;
   visibility: hidden;
@@ -80,7 +57,7 @@ onUnmounted(() => {
   position: fixed;
   top: 0;
   right: 0;
-  z-index: 999;
+  z-index: var(--z-index-popup);
   width: 100%;
   max-width: 400px;
   height: 100dvh;

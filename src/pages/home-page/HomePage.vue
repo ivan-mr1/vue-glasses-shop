@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from 'vue';
-import Drawer from '@/widgets/drawer';
+// import { ref } from 'vue';
+// import Drawer from '@/widgets/drawer';
 import Header from '@/widgets/header';
 import HeroHomePage from './sections/HeroHomePage.vue';
 import AboutHomePage from './sections/AboutHomePage.vue';
@@ -11,12 +11,26 @@ import ScrollUpButton from '@/shared/ui/ScrollUpButton';
 import { usePageNavigation } from '@/shared/lib/usePageNavigation';
 
 usePageNavigation();
-const isDrawerOpen = ref(false);
+
+// const isDrawerOpen = ref(true);
+
+// const openDrawer = () => {
+//   isDrawerOpen.value = true;
+// };
+
+// const closeDrawer = () => {
+//   isDrawerOpen.value = false;
+// };
 </script>
 
 <template>
   <div class="wrapper">
-    <Drawer :is-active="isDrawerOpen" :total-price="0" :discount="0" />
+    <!-- <Drawer
+      :is-active="isDrawerOpen"
+      :total-price="0"
+      :discount="0"
+      @close="closeDrawer"
+    /> -->
     <Header />
     <main class="page">
       <HeroHomePage />
