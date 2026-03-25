@@ -5,7 +5,7 @@ import DrawerList from './DrawerList.vue';
 import DrawerBottom from './DrawerBottom.vue';
 import InfoBlock from '@/shared/ui/info-block';
 import cartEmptyImg from '@/shared/assets/img/drawer/cart-empty.png';
-import orderImg from '@/shared/assets/img/drawer/order.png';
+// import orderImg from '@/shared/assets/img/drawer/order.png';
 
 defineProps({
   isActive: { type: Boolean, default: false },
@@ -13,7 +13,6 @@ defineProps({
 
 const { closeDrawer } = inject('cart');
 const finishPrice = inject('finishPrice');
-const cartButtonDidabled = inject('cartButtonDidabled');
 </script>
 
 <template>
@@ -28,18 +27,19 @@ const cartButtonDidabled = inject('cartButtonDidabled');
       <DrawerHead />
       <div class="drawer__content">
         <InfoBlock
-          v-if="cartButtonDidabled"
+          v-if="!finishPrice"
           :image-url="cartEmptyImg"
           title="Кошик порожній"
           text="Додайте бодай один товар, щоб зробити замовлення."
         />
+        <!--
         <InfoBlock
           :image-url="orderImg"
           :image-width="83"
           title="Замовлення оформлене!"
           text="Ваше замовлення #18 скоро буде передано кур'єрській доставці"
-        />
-        <DrawerList />
+        /> -->
+        <DrawerList v-if="finishPrice" />
       </div>
 
       <DrawerBottom v-if="finishPrice" />
