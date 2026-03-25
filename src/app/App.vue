@@ -37,6 +37,10 @@ const totalPrice = computed(() => cart.value.reduce((acc, item) => acc + item.pr
 const discount = computed(() => Math.round((totalPrice.value * 5) / 100));
 const finishPrice = computed(() => Math.round(totalPrice.value - discount.value));
 /* ===== */
+const cartIsEmpty = computed(() => cart.value.length === 0);
+
+const cartButtonDidabled = computed(() => isCreatingOrder.value || cartIsEmpty.value);
+
 const addToCart = (item) => {
   cart.value.push(item);
   item.isAdded = true;
@@ -48,11 +52,12 @@ const removeFromCart = (item) => {
 };
 
 const createOrder = async () => {
+  //  отправка заказа на сервер, очистка массива корзины
   try {
     isCreatingOrder.value = true;
     const { data } = await axios.post(`${BASE_URL}${ORDERS_ENDPOINT}`, {
       items: cart.value,
-      totalPrice: totalPrice.value, // finishPrice
+      finishPrice: finishPrice.value,
     });
 
     cart.value = [];
@@ -149,6 +154,14 @@ onMounted(async () => {
 });
 
 watch(filters, fetchItems);
+
+// очищаем все кнопки "Купить"
+watch(cart, () => {
+  items.value = items.value.map((item) => ({
+    ...item,
+    isAdded: false,
+  }));
+});
 provide('items', items);
 provide('onChangeSelect', onChangeSelect);
 provide('onChangeSearchInput', onChangeSearchInput);
@@ -159,6 +172,8 @@ provide('totalPrice', totalPrice);
 provide('discount', discount);
 provide('finishPrice', finishPrice);
 provide('createOrder', createOrder);
+provide('isCreatingOrder', isCreatingOrder);
+provide('cartButtonDidabled', cartButtonDidabled);
 /* ======= вынести из App.vue */
 </script>
 

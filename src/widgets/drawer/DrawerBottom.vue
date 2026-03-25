@@ -7,6 +7,7 @@ const totalPrice = inject('totalPrice');
 const discount = inject('discount');
 const finishPrice = inject('finishPrice');
 const createOrder = inject('createOrder');
+const cartButtonDidabled = inject('cartButtonDidabled');
 </script>
 
 <template>
@@ -17,7 +18,7 @@ const createOrder = inject('createOrder');
         <span class="bottom-drawer__value">{{ formatPrice(totalPrice) }} грн</span>
       </div>
 
-      <div class="bottom-drawer__item" v-if="discount > 0">
+      <div class="bottom-drawer__item">
         <span class="bottom-drawer__label">Знижка:</span>
         <span class="bottom-drawer__value bottom-drawer__value--discount">
           -{{ formatPrice(discount) }} грн
@@ -30,7 +31,7 @@ const createOrder = inject('createOrder');
       </div>
     </div>
 
-    <Button class="button--card" @click="() => createOrder()" :disabled="totalPrice ? false : true">
+    <Button class="button--card" @click="() => createOrder()" :disabled="cartButtonDidabled">
       Оформити замовлення
     </Button>
   </div>

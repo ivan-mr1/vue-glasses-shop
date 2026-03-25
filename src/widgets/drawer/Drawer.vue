@@ -3,12 +3,17 @@ import { inject } from 'vue';
 import DrawerHead from './DrawerHead.vue';
 import DrawerList from './DrawerList.vue';
 import DrawerBottom from './DrawerBottom.vue';
+import InfoBlock from '@/shared/ui/info-block';
+import cartEmptyImg from '@/shared/assets/img/drawer/cart-empty.png';
+import orderImg from '@/shared/assets/img/drawer/order.png';
 
 defineProps({
   isActive: { type: Boolean, default: false },
 });
 
 const { closeDrawer } = inject('cart');
+const finishPrice = inject('finishPrice');
+const cartButtonDidabled = inject('cartButtonDidabled');
 </script>
 
 <template>
@@ -21,8 +26,23 @@ const { closeDrawer } = inject('cart');
 
     <aside class="drawer" :class="{ 'is-active': isActive }">
       <DrawerHead />
-      <DrawerList />
-      <DrawerBottom />
+      <div class="drawer__content">
+        <InfoBlock
+          v-if="cartButtonDidabled"
+          :image-url="cartEmptyImg"
+          title="Кошик порожній"
+          text="Додайте бодай один товар, щоб зробити замовлення."
+        />
+        <InfoBlock
+          :image-url="orderImg"
+          :image-width="83"
+          title="Замовлення оформлене!"
+          text="Ваше замовлення #18 скоро буде передано кур'єрській доставці"
+        />
+        <DrawerList />
+      </div>
+
+      <DrawerBottom v-if="finishPrice" />
     </aside>
   </Teleport>
 </template>
@@ -77,6 +97,10 @@ const { closeDrawer } = inject('cart');
     flex: 1;
     min-height: 0;
     margin-block: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   :deep(.drawer__list) {
