@@ -1,5 +1,10 @@
 <template>
-  <a href="/" class="header__action" aria-label="Open favorite" title="Open favorite">
+  <RouterLink
+    to="/favorites"
+    class="header__action"
+    aria-label="Open favorite"
+    title="Open favorite"
+  >
     <span class="counter-icon">
       <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 29">
         <path
@@ -9,7 +14,7 @@
       </svg>
       <span class="counter-icon__count counter-icon__count--fav">0</span>
     </span>
-  </a>
+  </RouterLink>
 </template>
 
 <style scoped lang="scss">

@@ -1,6 +1,9 @@
 <script setup>
-import Home from '@/pages/home-page';
-import Drawer from '@/widgets/drawer/Drawer.vue';
+import { RouterView } from 'vue-router';
+import Drawer from '@/widgets/drawer';
+import Header from '@/widgets/header';
+import Footer from '@/widgets/footer';
+import ScrollUpButton from '@/shared/ui/ScrollUpButton';
 import './styles/main.scss';
 /* ======= вынести из App.vue */
 import { computed, onMounted, provide, reactive, ref, watch } from 'vue';
@@ -196,6 +199,11 @@ provide('cartButtonDidabled', cartButtonDidabled);
 </script>
 
 <template>
-  <Home />
-  <Drawer :is-active="isDrawerOpen" />
+  <div class="wrapper">
+    <Header />
+    <RouterView />
+    <Drawer :is-active="isDrawerOpen" />
+    <Footer />
+    <ScrollUpButton />
+  </div>
 </template>

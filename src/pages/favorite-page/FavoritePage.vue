@@ -1,19 +1,7 @@
-<script setup>
-import Header from '@/widgets/header';
-import Footer from '@/widgets/footer';
-import ScrollUpButton from '@/shared/ui/ScrollUpButton/ScrollUpButton.vue';
-import { usePageNavigation } from '@/shared/lib/usePageNavigation';
-
-usePageNavigation();
-</script>
+<script setup></script>
 
 <template>
-  <div class="wrapper">
-    <Header />
-    <main class="page"></main>
-    <Footer />
-    <ScrollUpButton />
-  </div>
+  <main class="page">favorites</main>
 </template>
 
 <style scoped lang="scss">

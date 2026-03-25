@@ -1,5 +1,5 @@
 <script setup>
-import Logo from '@/shared/ui/logo/Logo.vue';
+import Logo from '@/shared/ui/logo';
 import Menu from './Menu.vue';
 import Actions from './Actions.vue';
 import Burger1 from './burger-button/Burger-1.vue';
@@ -21,7 +21,7 @@ const { isMenuOpen, isScrolled, isHidden, headerRef, toggleMenu, closeMenu } = u
     data-right-padding
   >
     <div class="header__container">
-      <Logo />
+      <RouterLink to="/"><Logo /></RouterLink>
 
       <div class="header__overlay" @click.self="closeMenu">
         <Menu
