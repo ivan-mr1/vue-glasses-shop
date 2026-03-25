@@ -9,7 +9,7 @@ defineProps({
   price: Number,
 });
 
-const emit = defineEmits('onClickRemove');
+const emit = defineEmits(['onClickRemove']);
 </script>
 
 <template>

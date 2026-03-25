@@ -5,7 +5,7 @@ import FavoriteButton from '@/features/favorite';
 
 <template>
   <div class="header__actions">
-    <CartButton :total-price="2000" />
+    <CartButton />
     <FavoriteButton />
   </div>
 </template>
