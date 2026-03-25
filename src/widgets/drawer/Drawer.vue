@@ -6,8 +6,6 @@ import DrawerBottom from './DrawerBottom.vue';
 
 defineProps({
   isActive: { type: Boolean, default: false },
-  totalPrice: { type: Number, default: 0 },
-  discount: { type: Number, default: 0 },
 });
 
 const { closeDrawer } = inject('cart');

@@ -5,7 +5,12 @@ import './styles/main.scss';
 /* ======= вынести из App.vue */
 import { computed, onMounted, provide, reactive, ref, watch } from 'vue';
 import axios from 'axios';
-import { BASE_URL, PRODUCTS_ENDPOINT, FAVORITES_ENDPOINT } from '@/shared/api/config';
+import {
+  BASE_URL,
+  PRODUCTS_ENDPOINT,
+  FAVORITES_ENDPOINT,
+  ORDERS_ENDPOINT,
+} from '@/shared/api/config';
 
 /* ===== drawer */
 const isDrawerOpen = ref(false);
@@ -21,13 +26,17 @@ const closeDrawer = () => {
 
 const items = ref([]);
 const cart = ref([]);
+const isCreatingOrder = ref(false);
+
 const filters = reactive({
   sortBy: 'title',
   searchQuery: '',
 });
-
-const totalPriceCart = computed(() => cart.value.reduce((acc, item) => acc + item.price, 0));
-
+/* ===== */
+const totalPrice = computed(() => cart.value.reduce((acc, item) => acc + item.price, 0));
+const discount = computed(() => Math.round((totalPrice.value * 5) / 100));
+const finishPrice = computed(() => Math.round(totalPrice.value - discount.value));
+/* ===== */
 const addToCart = (item) => {
   cart.value.push(item);
   item.isAdded = true;
@@ -36,6 +45,24 @@ const addToCart = (item) => {
 const removeFromCart = (item) => {
   cart.value.splice(cart.value.indexOf(item), 1);
   item.isAdded = false;
+};
+
+const createOrder = async () => {
+  try {
+    isCreatingOrder.value = true;
+    const { data } = await axios.post(`${BASE_URL}${ORDERS_ENDPOINT}`, {
+      items: cart.value,
+      totalPrice: totalPrice.value, // finishPrice
+    });
+
+    cart.value = [];
+
+    return data;
+  } catch (err) {
+    console.error('Error loading data:', err);
+  } finally {
+    isCreatingOrder.value = false;
+  }
 };
 
 const onClickAddCart = (item) => {
@@ -128,11 +155,14 @@ provide('onChangeSearchInput', onChangeSearchInput);
 provide('addToFavorite', addToFavorite);
 provide('onClickAddCart', onClickAddCart);
 provide('cart', { cart, openDrawer, closeDrawer, addToCart, removeFromCart });
-provide('totalPriceCart', totalPriceCart);
+provide('totalPrice', totalPrice);
+provide('discount', discount);
+provide('finishPrice', finishPrice);
+provide('createOrder', createOrder);
 /* ======= вынести из App.vue */
 </script>
 
 <template>
   <Home />
-  <Drawer :is-active="isDrawerOpen" :total-price="0" :discount="0" />
+  <Drawer :is-active="isDrawerOpen" />
 </template>

@@ -3,12 +3,10 @@ import { inject } from 'vue';
 import Button from '@/shared/ui/form/button';
 import { formatPrice } from '@/shared/utils/formatPrice';
 
-defineProps({
-  totalPrice: { type: Number, default: 0 },
-  discount: { type: Number, default: 0 },
-  isSubmitting: { type: Boolean, default: false }, // для лоадера на кнопке
-});
-const totalPriceCart = inject('totalPriceCart');
+const totalPrice = inject('totalPrice');
+const discount = inject('discount');
+const finishPrice = inject('finishPrice');
+const createOrder = inject('createOrder');
 </script>
 
 <template>
@@ -16,7 +14,7 @@ const totalPriceCart = inject('totalPriceCart');
     <div class="bottom-drawer__info">
       <div class="bottom-drawer__item">
         <span class="bottom-drawer__label">Усього:</span>
-        <span class="bottom-drawer__value">{{ formatPrice(totalPriceCart) }} грн</span>
+        <span class="bottom-drawer__value">{{ formatPrice(totalPrice) }} грн</span>
       </div>
 
       <div class="bottom-drawer__item" v-if="discount > 0">
@@ -25,9 +23,14 @@ const totalPriceCart = inject('totalPriceCart');
           -{{ formatPrice(discount) }} грн
         </span>
       </div>
+
+      <div class="bottom-drawer__item">
+        <span class="bottom-drawer__label">Усього зi знижкою:</span>
+        <span class="bottom-drawer__value"> {{ formatPrice(finishPrice) }} грн </span>
+      </div>
     </div>
 
-    <Button class="button--card" :disabled="totalPrice === 0 || isSubmitting">
+    <Button class="button--card" @click="() => createOrder()" :disabled="totalPrice ? false : true">
       Оформити замовлення
     </Button>
   </div>
