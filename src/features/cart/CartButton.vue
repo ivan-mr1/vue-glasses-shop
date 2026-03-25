@@ -2,7 +2,7 @@
 import { inject } from 'vue';
 
 const { openDrawer } = inject('cart');
-const totalPrice = inject('totalPrice');
+const finishPrice = inject('finishPrice');
 </script>
 
 <template>
@@ -33,7 +33,7 @@ const totalPrice = inject('totalPrice');
           fill="#FFA501"
         ></path>
       </svg>
-      <span class="counter-icon__count">{{ totalPrice }} грн</span>
+      <span class="counter-icon__count">{{ finishPrice }} грн</span>
     </span>
   </button>
 </template>

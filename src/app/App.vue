@@ -10,7 +10,6 @@ import { computed, provide, ref, watch } from 'vue';
 import axios from 'axios';
 import { BASE_URL, ORDERS_ENDPOINT } from '@/shared/api/config';
 
-/* ===== cart (start) */
 const cart = ref([]);
 const isCreatingOrder = ref(false);
 const isDrawerOpen = ref(false);
@@ -58,7 +57,6 @@ const createOrder = async () => {
     isCreatingOrder.value = false;
   }
 };
-/* ===== cart (finish) */
 
 // любое изменение корзины сохраняется в localStorage
 watch(
