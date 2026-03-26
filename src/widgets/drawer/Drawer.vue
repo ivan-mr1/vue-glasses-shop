@@ -1,5 +1,7 @@
 <script setup>
-import { inject } from 'vue';
+import { inject, provide, ref, computed } from 'vue';
+import axios from 'axios';
+import { BASE_URL, ORDERS_ENDPOINT } from '@/shared/api/config';
 import DrawerHead from './DrawerHead.vue';
 import DrawerList from './DrawerList.vue';
 import DrawerBottom from './DrawerBottom.vue';
@@ -11,8 +13,36 @@ defineProps({
   isActive: { type: Boolean, default: false },
 });
 
-const { closeDrawer } = inject('cart');
+const isCreatingOrder = ref(false);
+
+const { cart, closeDrawer } = inject('cart');
 const finishPrice = inject('finishPrice');
+
+const createOrder = async () => {
+  //  отправка заказа на сервер, очистка массива корзины
+  try {
+    isCreatingOrder.value = true;
+    const { data } = await axios.post(`${BASE_URL}${ORDERS_ENDPOINT}`, {
+      items: cart.value,
+      finishPrice: finishPrice.value,
+    });
+
+    cart.value = [];
+
+    return data;
+  } catch (err) {
+    console.error('Error loading data:', err);
+  } finally {
+    isCreatingOrder.value = false;
+  }
+};
+
+const cartIsEmpty = computed(() => cart.value.length === 0);
+
+const cartButtonDidabled = computed(() => isCreatingOrder.value || cartIsEmpty.value);
+
+provide('createOrder', createOrder);
+provide('cartButtonDidabled', cartButtonDidabled);
 </script>
 
 <template>
