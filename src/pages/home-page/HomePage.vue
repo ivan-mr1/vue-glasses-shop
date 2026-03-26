@@ -2,6 +2,7 @@
 import { inject, reactive, watch, ref, onMounted, provide } from 'vue';
 import axios from 'axios';
 import { BASE_URL, PRODUCTS_ENDPOINT, FAVORITES_ENDPOINT } from '@/shared/api/config';
+import debounce from '@/shared/utils/debounce';
 import HeroHomePage from './sections/HeroHomePage.vue';
 import AboutHomePage from './sections/AboutHomePage.vue';
 import PartnersHomePage from './sections/PartnersHomePage.vue';
@@ -28,16 +29,16 @@ const onChangeSelect = (event) => {
   filters.sortBy = event.target.value;
 };
 
-const onChangeSearchInput = (event) => {
+const onChangeSearchInput = debounce((event) => {
   filters.searchQuery = event.target.value;
-};
+}, 350);
 
 const addToFavorite = async (item) => {
   try {
     if (!item.isFavorite) {
       const obj = {
         item_id: item.id,
-        item, // убрать строку, если будет работать ?_relations=products
+        item, // убрать строку, если будет работать на сервере ?_relations=products
       };
       item.isFavorite = true;
       const { data } = await axios.post(`${BASE_URL}${FAVORITES_ENDPOINT}`, obj);
