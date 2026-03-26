@@ -8,12 +8,7 @@ import './styles/main.scss';
 /* ======= вынести из App.vue */
 import { computed, provide, ref, watch } from 'vue';
 
-const cart = ref([]);
 const isDrawerOpen = ref(false);
-
-const totalPrice = computed(() => cart.value.reduce((acc, item) => acc + item.price, 0));
-const discount = computed(() => Math.round((totalPrice.value * 5) / 100));
-const finishPrice = computed(() => Math.round(totalPrice.value - discount.value));
 
 const openDrawer = () => {
   isDrawerOpen.value = true;
@@ -22,6 +17,12 @@ const openDrawer = () => {
 const closeDrawer = () => {
   isDrawerOpen.value = false;
 };
+
+const cart = ref([]);
+
+const totalPrice = computed(() => cart.value.reduce((acc, item) => acc + item.price, 0));
+const discount = computed(() => Math.round((totalPrice.value * 5) / 100));
+const finishPrice = computed(() => Math.round(totalPrice.value - discount.value));
 
 const addToCart = (item) => {
   cart.value.push(item);

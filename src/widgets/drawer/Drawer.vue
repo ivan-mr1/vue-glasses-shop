@@ -7,13 +7,14 @@ import DrawerList from './DrawerList.vue';
 import DrawerBottom from './DrawerBottom.vue';
 import InfoBlock from '@/shared/ui/info-block';
 import cartEmptyImg from '@/shared/assets/img/drawer/cart-empty.png';
-// import orderImg from '@/shared/assets/img/drawer/order.png';
+import orderImg from '@/shared/assets/img/drawer/order.png';
 
 defineProps({
   isActive: { type: Boolean, default: false },
 });
 
-const isCreatingOrder = ref(false);
+const isCreatingOrder = ref(false); // (isCreating)
+const orderId = ref(null);
 
 const { cart, closeDrawer } = inject('cart');
 const finishPrice = inject('finishPrice');
@@ -29,7 +30,8 @@ const createOrder = async () => {
 
     cart.value = [];
 
-    return data;
+    orderId.value = data.id;
+    // return data;
   } catch (err) {
     console.error('Error loading data:', err);
   } finally {
@@ -42,7 +44,7 @@ const cartIsEmpty = computed(() => cart.value.length === 0);
 const cartButtonDidabled = computed(() => isCreatingOrder.value || cartIsEmpty.value);
 
 provide('createOrder', createOrder);
-provide('cartButtonDidabled', cartButtonDidabled);
+provide('cartButtonDidabled', cartButtonDidabled); // (buttonDisabled)
 </script>
 
 <template>
@@ -56,19 +58,22 @@ provide('cartButtonDidabled', cartButtonDidabled);
     <aside class="drawer" :class="{ 'is-active': isActive }">
       <DrawerHead />
       <div class="drawer__content">
-        <InfoBlock
-          v-if="!finishPrice"
-          :image-url="cartEmptyImg"
-          title="Кошик порожній"
-          text="Додайте бодай один товар, щоб зробити замовлення."
-        />
-        <!--
-        <InfoBlock
-          :image-url="orderImg"
-          :image-width="83"
-          title="Замовлення оформлене!"
-          text="Ваше замовлення #18 скоро буде передано кур'єрській доставці"
-        /> -->
+        <div v-if="!finishPrice || orderId" class="drawer__infoblock">
+          <InfoBlock
+            v-if="!finishPrice && !orderId"
+            :image-url="cartEmptyImg"
+            title="Кошик порожній"
+            text="Додайте бодай один товар, щоб зробити замовлення."
+          />
+          <InfoBlock
+            v-if="orderId"
+            :image-url="orderImg"
+            :image-width="83"
+            title="Замовлення оформлене!"
+            :text="`Ваше замовлення № ${orderId} скоро буде передано кур'єрській доставці`"
+          />
+        </div>
+
         <DrawerList v-if="finishPrice" />
       </div>
 
