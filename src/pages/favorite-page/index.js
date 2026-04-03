@@ -1,1 +1,1 @@
-export { default } from './FavoritePage.vue';
+export { default } from './ui/FavoritePage.vue';

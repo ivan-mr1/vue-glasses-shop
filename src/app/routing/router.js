@@ -1,15 +1,24 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import FavoritePage from '@/pages/favorite-page';
-import HomePage from '@/pages/home-page';
 
 const routes = [
-  { path: '/', name: 'Home', component: HomePage },
-  { path: '/favorites', name: 'Favorites', component: FavoritePage },
+  {
+    path: '/',
+    name: 'Home',
+    component: () => import('@/pages/home-page'),
+  },
+  {
+    path: '/favorites',
+    name: 'Favorites',
+    component: () => import('@/pages/favorite-page'),
+  },
 ];
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
+  scrollBehavior() {
+    return { top: 0 };
+  },
 });
 
 export default router;
