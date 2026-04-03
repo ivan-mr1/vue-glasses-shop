@@ -127,12 +127,10 @@ provide('onClickAddCart', onClickAddCart);
 </script>
 
 <template>
-  <main class="page">
-    <HeroHomePage />
-    <AboutHomePage />
-    <PartnersHomePage />
-    <ProductsHomePage />
-  </main>
+  <HeroHomePage />
+  <AboutHomePage />
+  <PartnersHomePage />
+  <ProductsHomePage />
 </template>
 
 <style scoped lang="scss">

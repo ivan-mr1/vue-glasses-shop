@@ -1,6 +1,6 @@
 <script setup>
 import { inject } from 'vue';
-import ProductCard from '@/entities/product/ui';
+import ProductCard from '@/entities/product';
 
 defineProps({
   items: Array,

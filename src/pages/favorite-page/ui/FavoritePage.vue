@@ -21,14 +21,12 @@ onMounted(async () => {
 </script>
 
 <template>
-  <main class="page">
-    <section id="favorites" class="page__favorites favorites" aria-labelledby="favorites-title">
-      <div class="products__container">
-        <HeaderBlock custom-class="favorites__header" id="favorites-title" title="Закладки" />
-        <ProductCatalog :items="favorites" />
-      </div>
-    </section>
-  </main>
+  <section id="favorites" class="page__favorites favorites" aria-labelledby="favorites-title">
+    <div class="products__container">
+      <HeaderBlock custom-class="favorites__header" id="favorites-title" title="Закладки" />
+      <ProductCatalog :items="favorites" />
+    </div>
+  </section>
 </template>
 
 <style scoped lang="scss">

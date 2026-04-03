@@ -1,11 +1,11 @@
 <script setup>
+import { computed, provide, ref, watch } from 'vue';
 import { RouterView } from 'vue-router';
 import Drawer from '@/widgets/drawer';
 import Header from '@/widgets/header';
 import Footer from '@/widgets/footer';
 import ScrollUpButton from '@/shared/ui/ScrollUpButton';
 import './styles/main.scss';
-import { computed, provide, ref, watch } from 'vue';
 
 const isDrawerOpen = ref(false);
 
@@ -50,9 +50,11 @@ provide('finishPrice', finishPrice);
 <template>
   <div class="wrapper">
     <Header />
-    <RouterView />
-    <Drawer :is-active="isDrawerOpen" />
+    <main class="page">
+      <RouterView />
+    </main>
     <Footer />
+    <Drawer :is-active="isDrawerOpen" />
     <ScrollUpButton />
   </div>
 </template>
