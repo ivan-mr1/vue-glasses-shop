@@ -1,6 +1,6 @@
 // In dev:  requests go directly to the real server (URL visible in Network tab)
-// In prod: requests go to /api/* (Vercel proxy) — real server URL is never sent to the browser
-const useProxy = import.meta.env.VITE_USE_PROXY === 'true';
+// In prod: import.meta.env.PROD is true automatically during `vite build` — no env file needed
+const useProxy = import.meta.env.PROD;
 
 export const BASE_URL = useProxy ? '' : import.meta.env.VITE_API_BASE_URL;
 export const PRODUCTS_ENDPOINT = useProxy
