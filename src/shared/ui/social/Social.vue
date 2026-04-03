@@ -4,9 +4,9 @@ import whatsapp from '@/shared/assets/img/svg/whatsapp.svg';
 import instagram from '@/shared/assets/img/svg/instagram.svg';
 
 const socials = [
-  { name: 'Telegram', url: 'https://t.me/Optikaonline', icon: telegram },
-  { name: 'Instagram', url: 'https://www.instagram.com/optica.ukraine.online/', icon: instagram },
-  { name: 'Whatsapp', url: 'https://wa.me/380974501872', icon: whatsapp },
+  { name: 'Telegram', url: 'https://t.me/', icon: telegram },
+  { name: 'Instagram', url: 'https://www.instagram.com/', icon: instagram },
+  { name: 'Whatsapp', url: 'https://wa.me/3809', icon: whatsapp },
 ];
 
 const props = defineProps({

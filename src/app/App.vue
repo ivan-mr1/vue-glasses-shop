@@ -5,7 +5,6 @@ import Header from '@/widgets/header';
 import Footer from '@/widgets/footer';
 import ScrollUpButton from '@/shared/ui/ScrollUpButton';
 import './styles/main.scss';
-/* ======= вынести из App.vue */
 import { computed, provide, ref, watch } from 'vue';
 
 const isDrawerOpen = ref(false);
@@ -34,7 +33,6 @@ const removeFromCart = (item) => {
   item.isAdded = false;
 };
 
-// любое изменение корзины сохраняется в localStorage
 watch(
   cart,
   () => {
@@ -47,7 +45,6 @@ provide('cart', { cart, openDrawer, closeDrawer, addToCart, removeFromCart });
 provide('totalPrice', totalPrice);
 provide('discount', discount);
 provide('finishPrice', finishPrice);
-/* ======= вынести из App.vue */
 </script>
 
 <template>

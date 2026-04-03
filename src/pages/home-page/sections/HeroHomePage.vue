@@ -20,7 +20,7 @@ import ScrollDownButton from '@/shared/ui/scroll-down-button/ScrollDownButton.vu
       </div>
     </div>
     <video class="video-fon" autoplay muted loop>
-      <source type="video/mp4" src="@/shared/assets/video/10.mp4" />
+      <source type="video/mp4" src="@/shared/assets/video/4.mp4" />
     </video>
     <ScrollDownButton goto=".about" />
   </section>

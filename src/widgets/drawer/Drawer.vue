@@ -13,7 +13,7 @@ defineProps({
   isActive: { type: Boolean, default: false },
 });
 
-const isCreatingOrder = ref(false); // (isCreating)
+const isCreatingOrder = ref(false);
 const orderId = ref(null);
 
 const { cart, closeDrawer } = inject('cart');
@@ -44,7 +44,7 @@ const cartIsEmpty = computed(() => cart.value.length === 0);
 const cartButtonDidabled = computed(() => isCreatingOrder.value || cartIsEmpty.value);
 
 provide('createOrder', createOrder);
-provide('cartButtonDidabled', cartButtonDidabled); // (buttonDisabled)
+provide('cartButtonDidabled', cartButtonDidabled);
 </script>
 
 <template>

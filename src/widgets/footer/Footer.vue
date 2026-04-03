@@ -17,8 +17,8 @@ import Social from '@/shared/ui/social/Social.vue';
         <Contacts
           base-class="footer__contacts"
           :contacts="[
-            { name: '+38(097) 450 18 72', tel: '+380974501872' },
-            { name: '+38(066) 230 33 68', tel: '+380662303368' },
+            { name: '+38(097) 450 18 22', tel: '+380974501822' },
+            { name: '+38(066) 230 30 22', tel: '+380662303022' },
           ]"
         />
       </div>
