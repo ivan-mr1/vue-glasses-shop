@@ -46,6 +46,6 @@ items.js
 #env
 .env
 .env.local
-.env.prod
+.env.production
 
 docs-dev

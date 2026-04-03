@@ -22,12 +22,22 @@ export default defineConfig([
     languageOptions: {
       globals: {
         ...globals.browser,
+        ...globals.node,
       },
     },
   },
 
   js.configs.recommended,
   ...pluginVue.configs['flat/essential'],
+
+  {
+    files: ['api/**/*.js'],
+    languageOptions: {
+      globals: {
+        ...globals.node,
+      },
+    },
+  },
 
   skipFormatting,
 
