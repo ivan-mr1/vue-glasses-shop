@@ -11,6 +11,11 @@ const routes = [
     name: 'Favorites',
     component: () => import('@/pages/favorite-page'),
   },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFoundPage',
+    component: () => import('@/pages/not-found-page'),
+  },
 ];
 
 const router = createRouter({
