@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import axios from 'axios';
-import { BASE_URL, PRODUCTS_ENDPOINT, FAVORITES_ENDPOINT } from '@/shared/api/config';
+import { BASE_URL, PRODUCTS_COLLECTION, FAVORITES_ENDPOINT } from '@/shared/api/config';
 import HeaderBlock from '@/shared/ui/header-block/HeaderBlock.vue';
 import ProductCatalog from '@/widgets/product-catalog/ui/ProductCatalog.vue';
 
@@ -10,7 +10,7 @@ const favorites = ref([]);
 onMounted(async () => {
   try {
     const { data } = await axios.get(
-      `${BASE_URL}${FAVORITES_ENDPOINT}?_relations=${PRODUCTS_ENDPOINT}`,
+      `${BASE_URL}${FAVORITES_ENDPOINT}?_relations=${PRODUCTS_COLLECTION}`,
     );
     favorites.value = data.map((obj) => obj.item);
     console.log(data);

@@ -10,3 +10,6 @@ export const ORDERS_ENDPOINT = useProxy ? '/api/orders' : import.meta.env.VITE_E
 export const FAVORITES_ENDPOINT = useProxy
   ? '/api/favorites'
   : import.meta.env.VITE_ENDPOINT_FAVORITES;
+
+// Raw collection name — always without /api/ prefix, used for ?_relations= query params
+export const PRODUCTS_COLLECTION = 'products';
