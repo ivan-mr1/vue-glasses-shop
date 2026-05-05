@@ -16,6 +16,7 @@ export default async function handler(req) {
   const url = new URL(req.url);
   const path = url.pathname.replace(/^\/api/, '');
   const targetUrl = `${BASE}${path}${url.search}`;
+  console.log(`Proxying request: ${req.method} ${url.pathname} -> ${targetUrl}`);
 
   const proxyHeaders = new Headers(req.headers);
   proxyHeaders.delete('host');
