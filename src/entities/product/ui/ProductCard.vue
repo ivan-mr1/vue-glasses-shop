@@ -5,7 +5,6 @@ defineProps({
   id: Number,
   title: String,
   imageUrl: String,
-  description: String,
   code: String,
   price: Number,
 });
@@ -29,15 +28,11 @@ defineProps({
               {{ title }}
             </RouterLink>
           </h3>
-
-          <div class="product__descr">
-            <p>{{ description }}</p>
-          </div>
-
-          <div class="product__code">Код: {{ code }}</div>
-
-          <div class="product__price product-price">
-            <div class="product__price-current">{{ formatPrice(price) }} грн</div>
+          <div class="product__flex">
+            <div class="product__code">Код: {{ code }}</div>
+            <div class="product__price product-price">
+              <div class="product__price-current">{{ formatPrice(price) }} грн</div>
+            </div>
           </div>
 
           <div class="product__actions">
@@ -124,7 +119,13 @@ defineProps({
     color: var(--color-black);
   }
 
-  &__descr,
+  &__flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: fluid(15, 10);
+  }
+
   &__code {
     font-size: 14px;
     color: var(--color-gray);
