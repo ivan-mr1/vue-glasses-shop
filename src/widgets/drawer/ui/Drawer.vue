@@ -5,6 +5,7 @@ import DrawerBottom from './DrawerBottom.vue';
 import InfoBlock from '@/shared/ui/info-block';
 import cartEmptyImg from '@/shared/assets/img/drawer/cart-empty.png';
 import orderImg from '@/shared/assets/img/drawer/order.png';
+import errorImg from '@/shared/assets/img/error.png';
 import { useCartStore } from '@/entities/cart';
 
 defineProps({
@@ -25,26 +26,35 @@ const cartStore = useCartStore();
     <aside class="drawer" :class="{ 'is-active': isActive }">
       <DrawerHead />
       <div class="drawer__content">
-        <div v-if="!cartStore.finishPrice || cartStore.orderId" class="drawer__infoblock">
+        <div
+          v-if="!cartStore.finishPrice || cartStore.orderId || cartStore.error"
+          class="drawer__infoblock"
+        >
           <InfoBlock
-            v-if="!cartStore.finishPrice && !cartStore.orderId"
-            :image-url="cartEmptyImg"
-            title="Кошик порожній"
-            text="Додайте бодай один товар, щоб зробити замовлення."
+            v-if="cartStore.error"
+            :image-url="errorImg"
+            title="Помилка завантаження"
+            :text="cartStore.error"
           />
           <InfoBlock
-            v-if="cartStore.orderId"
+            v-else-if="cartStore.orderId"
             :image-url="orderImg"
             :image-width="83"
             title="Замовлення оформлене!"
             :text="`Ваше замовлення № ${cartStore.orderId} скоро буде передано кур'єрській доставці`"
           />
+          <InfoBlock
+            v-else
+            :image-url="cartEmptyImg"
+            title="Кошик порожній"
+            text="Додайте бодай один товар, щоб зробити замовлення."
+          />
         </div>
 
-        <DrawerList v-if="cartStore.finishPrice" />
+        <DrawerList v-if="cartStore.finishPrice && !cartStore.orderId && !cartStore.error" />
       </div>
 
-      <DrawerBottom v-if="cartStore.finishPrice" />
+      <DrawerBottom v-if="cartStore.finishPrice && !cartStore.orderId && !cartStore.error" />
     </aside>
   </Teleport>
 </template>

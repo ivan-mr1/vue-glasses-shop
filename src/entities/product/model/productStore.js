@@ -5,6 +5,7 @@ import { fetchProducts } from '@/shared/api/productApi';
 export const useProductStore = defineStore('product', () => {
   const allItems = ref([]);
   const isLoading = ref(false);
+  const error = ref(null);
   const filters = reactive({
     sortBy: 'title',
     searchQuery: '',
@@ -22,6 +23,7 @@ export const useProductStore = defineStore('product', () => {
 
   const fetchItems = async () => {
     isLoading.value = true;
+    error.value = null;
     try {
       const params = {
         sortBy: filters.sortBy,
@@ -34,10 +36,9 @@ export const useProductStore = defineStore('product', () => {
       const data = await fetchProducts(params);
       allItems.value = data;
     } catch (err) {
+      error.value = "Не вдалося завантажити товари. Перевірте з'єднання з інтернетом.";
       console.error('Error loading data:', err.message);
     } finally {
-      // Искусственная задержка для демонстрации скелетонов (опционально)
-      // await new Promise(resolve => setTimeout(resolve, 1000));
       isLoading.value = false;
     }
   };
@@ -60,6 +61,7 @@ export const useProductStore = defineStore('product', () => {
     items,
     totalItems,
     isLoading,
+    error,
     filters,
     fetchItems,
     setPage,

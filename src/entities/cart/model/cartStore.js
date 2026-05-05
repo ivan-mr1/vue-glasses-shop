@@ -8,6 +8,7 @@ export const useCartStore = defineStore('cart', () => {
   const isDrawerOpen = ref(false);
   const isCreatingOrder = ref(false);
   const orderId = ref(null);
+  const error = ref(null);
 
   const totalPrice = computed(() => cart.value.reduce((acc, item) => acc + item.price, 0));
   const discount = computed(() => Math.round((totalPrice.value * 5) / 100));
@@ -20,6 +21,7 @@ export const useCartStore = defineStore('cart', () => {
 
   const closeDrawer = () => {
     isDrawerOpen.value = false;
+    error.value = null; // Сброс ошибки при закрытии
   };
 
   const addToCart = (item) => {
@@ -37,11 +39,13 @@ export const useCartStore = defineStore('cart', () => {
   const createOrder = async () => {
     try {
       isCreatingOrder.value = true;
+      error.value = null;
       const data = await apiCreateOrder(cart.value, finishPrice.value);
       cart.value = [];
       orderId.value = data.id;
     } catch (err) {
-      console.error('Error loading data:', err);
+      error.value = 'Не вдалося оформити замовлення. Спробуйте пізніше.';
+      console.error('Error creating order:', err);
     } finally {
       isCreatingOrder.value = false;
     }
@@ -60,6 +64,7 @@ export const useCartStore = defineStore('cart', () => {
     isDrawerOpen,
     isCreatingOrder,
     orderId,
+    error,
     totalPrice,
     discount,
     finishPrice,

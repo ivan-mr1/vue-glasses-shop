@@ -19,7 +19,10 @@ defineProps({
       loading="lazy"
     />
     <h3 class="infoblock__title">{{ title }}</h3>
-    <div class="infoblock__text">{{ text }}</div>
+    <div v-if="text" class="infoblock__text">{{ text }}</div>
+    <div class="infoblock__actions">
+      <slot name="action" />
+    </div>
   </div>
 </template>
 
