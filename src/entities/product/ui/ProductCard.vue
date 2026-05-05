@@ -15,7 +15,7 @@ defineProps({
   <li>
     <article class="product">
       <div class="product__inner">
-        <div class="product__image ibg" aria-hidden="true">
+        <div class="product__image" aria-hidden="true">
           <img :src="imageUrl" alt="" width="285" height="215" loading="lazy" />
         </div>
 
@@ -92,6 +92,22 @@ defineProps({
     flex-direction: column;
     gap: 10px;
     padding: fluid(15, 10);
+  }
+
+  &__image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f9f9f9;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
   }
 
   &__favorite-slot {
