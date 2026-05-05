@@ -8,7 +8,7 @@
 .logo {
   font-family: var(--second-family);
   font-size: rem(32);
-  color: var(--color-light);
+  color: #ffffff;
 
   @include hover {
     color: var(--color-orange);

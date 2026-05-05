@@ -61,7 +61,7 @@ import ScrollDownButton from '@/shared/ui/scroll-down-button/ScrollDownButton.vu
 
   &__body {
     max-width: rem(550);
-    color: var(--color-light);
+    color: #ffffff;
 
     @media (max-width: em(500)) {
       max-width: 100%;
@@ -101,6 +101,9 @@ import ScrollDownButton from '@/shared/ui/scroll-down-button/ScrollDownButton.vu
   }
 
   &__button {
+    color: #ffffff;
+    border-color: #ffffff;
+
     @media (max-width: em(500)) {
       width: 100%;
     }
