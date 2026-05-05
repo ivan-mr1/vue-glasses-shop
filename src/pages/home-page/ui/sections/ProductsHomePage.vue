@@ -35,7 +35,7 @@ const onChangePage = (page) => {
     <div class="products__container">
       <HeaderBlock custom-class="products__header" id="products-title" title="Каталог" />
       <ProductsFilter />
-      <ProductCatalog :items="productStore.items" />
+      <ProductCatalog :items="productStore.items" :is-loading="productStore.isLoading" />
 
       <Pagination
         :total-items="productStore.totalItems"

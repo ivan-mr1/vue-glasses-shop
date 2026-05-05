@@ -8,14 +8,18 @@ import {
 
 export const useFavoriteStore = defineStore('favorite', () => {
   const favorites = ref([]);
+  const isLoading = ref(false);
 
   const favoriteItems = computed(() => favorites.value.map((fav) => fav.item));
 
   const fetchFavorites = async () => {
+    isLoading.value = true;
     try {
       favorites.value = await apiFetchFavorites();
     } catch (err) {
       console.error('Error loading data:', err.message);
+    } finally {
+      isLoading.value = false;
     }
   };
 
@@ -44,6 +48,7 @@ export const useFavoriteStore = defineStore('favorite', () => {
   return {
     favorites,
     favoriteItems,
+    isLoading,
     fetchFavorites,
     toggleFavorite,
     hasItem,

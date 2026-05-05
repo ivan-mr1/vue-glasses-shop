@@ -4,6 +4,7 @@ import { fetchProducts } from '@/shared/api/productApi';
 
 export const useProductStore = defineStore('product', () => {
   const allItems = ref([]);
+  const isLoading = ref(false);
   const filters = reactive({
     sortBy: 'title',
     searchQuery: '',
@@ -20,6 +21,7 @@ export const useProductStore = defineStore('product', () => {
   const totalItems = computed(() => allItems.value.length);
 
   const fetchItems = async () => {
+    isLoading.value = true;
     try {
       const params = {
         sortBy: filters.sortBy,
@@ -33,6 +35,10 @@ export const useProductStore = defineStore('product', () => {
       allItems.value = data;
     } catch (err) {
       console.error('Error loading data:', err.message);
+    } finally {
+      // Искусственная задержка для демонстрации скелетонов (опционально)
+      // await new Promise(resolve => setTimeout(resolve, 1000));
+      isLoading.value = false;
     }
   };
 
@@ -53,6 +59,7 @@ export const useProductStore = defineStore('product', () => {
   return {
     items,
     totalItems,
+    isLoading,
     filters,
     fetchItems,
     setPage,
