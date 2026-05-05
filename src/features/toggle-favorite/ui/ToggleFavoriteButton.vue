@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue';
-import { useFavoriteStore } from '@/entities/favorite/model/favoriteStore';
+import { useFavoriteStore } from '@/entities/favorite';
 import { IconFavorite } from '@/shared/ui/icons';
 
 const props = defineProps({

@@ -24,7 +24,7 @@ export const useFavoriteStore = defineStore('favorite', () => {
       if (!isFavorite) {
         const data = await apiAddFavorite(item);
         favorites.value.push(data);
-        return data; // Return full favorite object including its own id
+        return data;
       } else {
         const favoriteItem = favorites.value.find((fav) => fav.item_id === item.id);
         if (favoriteItem) {

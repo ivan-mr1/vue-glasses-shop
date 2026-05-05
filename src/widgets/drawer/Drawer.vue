@@ -5,7 +5,7 @@ import DrawerBottom from './DrawerBottom.vue';
 import InfoBlock from '@/shared/ui/info-block';
 import cartEmptyImg from '@/shared/assets/img/drawer/cart-empty.png';
 import orderImg from '@/shared/assets/img/drawer/order.png';
-import { useCartStore } from '@/entities/cart/model/cartStore';
+import { useCartStore } from '@/entities/cart';
 
 defineProps({
   isActive: { type: Boolean, default: false },

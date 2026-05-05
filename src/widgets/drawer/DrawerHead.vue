@@ -1,6 +1,6 @@
 <script setup>
 import HeaderBlock from '@/shared/ui/header-block';
-import { useCartStore } from '@/entities/cart/model/cartStore';
+import { useCartStore } from '@/entities/cart';
 
 const cartStore = useCartStore();
 </script>

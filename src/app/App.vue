@@ -1,6 +1,6 @@
 <script setup>
 import { RouterView } from 'vue-router';
-import { useCartStore } from '@/entities/cart/model/cartStore';
+import { useCartStore } from '@/entities/cart';
 import Drawer from '@/widgets/drawer';
 import Header from '@/widgets/header';
 import Footer from '@/widgets/footer';

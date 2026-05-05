@@ -1,6 +1,6 @@
 <script setup>
 import Field from '@/shared/ui/form/field/Field.vue';
-import { useProductStore } from '@/entities/product/model/productStore';
+import { useProductStore } from '@/entities/product';
 import debounce from '@/shared/utils/debounce';
 
 const productStore = useProductStore();

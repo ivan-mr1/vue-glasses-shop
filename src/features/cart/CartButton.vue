@@ -1,6 +1,6 @@
 <script setup>
 import { CartButtonIcon } from '@/shared/ui/icons';
-import { useCartStore } from '@/entities/cart/model/cartStore';
+import { useCartStore } from '@/entities/cart';
 
 const cartStore = useCartStore();
 </script>

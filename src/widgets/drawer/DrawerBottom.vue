@@ -1,7 +1,7 @@
 <script setup>
 import Button from '@/shared/ui/form/button';
 import { formatPrice } from '@/shared/utils/formatPrice';
-import { useCartStore } from '@/entities/cart/model/cartStore';
+import { useCartStore } from '@/entities/cart';
 
 const cartStore = useCartStore();
 </script>

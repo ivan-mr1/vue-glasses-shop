@@ -1,5 +1,5 @@
 <script setup>
-import ProductCard from '@/entities/product';
+import { ProductCard } from '@/entities/product';
 import { AddToCartButton } from '@/features/add-to-cart';
 import { ToggleFavoriteButton } from '@/features/toggle-favorite';
 

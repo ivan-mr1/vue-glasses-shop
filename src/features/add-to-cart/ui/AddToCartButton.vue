@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue';
-import { useCartStore } from '@/entities/cart/model/cartStore';
+import { useCartStore } from '@/entities/cart';
 import Button from '@/shared/ui/form/button';
 
 const props = defineProps({

@@ -9,7 +9,7 @@ export const fetchFavorites = async () => {
 export const addFavorite = async (item) => {
   const obj = {
     item_id: item.id,
-    item, // keep as in original code
+    item,
   };
   const { data } = await axios.post(`${BASE_URL}${FAVORITES_ENDPOINT}`, obj);
   return data;

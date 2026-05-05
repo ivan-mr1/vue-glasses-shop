@@ -1,6 +1,6 @@
 <script setup>
 import DrawerProduct from './DrawerProduct.vue';
-import { useCartStore } from '@/entities/cart/model/cartStore';
+import { useCartStore } from '@/entities/cart';
 
 const cartStore = useCartStore();
 </script>
