@@ -1,9 +1,8 @@
 <script setup>
-import { inject } from 'vue';
 import { CartButtonIcon } from '@/shared/ui/icons';
+import { useCartStore } from '@/entities/cart/model/cartStore';
 
-const { openDrawer } = inject('cart');
-const finishPrice = inject('finishPrice');
+const cartStore = useCartStore();
 </script>
 
 <template>
@@ -12,11 +11,11 @@ const finishPrice = inject('finishPrice');
     class="header__action"
     aria-label="Open cart"
     title="Open cart"
-    @click="() => openDrawer()"
+    @click="() => cartStore.openDrawer()"
   >
     <span class="counter-icon">
       <CartButtonIcon />
-      <span class="counter-icon__count">{{ finishPrice }} грн</span>
+      <span class="counter-icon__count">{{ cartStore.finishPrice }} грн</span>
     </span>
   </button>
 </template>

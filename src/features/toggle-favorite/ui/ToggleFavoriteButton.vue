@@ -1,25 +1,32 @@
 <script setup>
-import { inject } from 'vue';
+import { computed } from 'vue';
+import { useFavoriteStore } from '@/entities/favorite/model/favoriteStore';
 import { IconFavorite } from '@/shared/ui/icons';
 
-defineProps({
+const props = defineProps({
   item: {
     type: Object,
     required: true,
   },
 });
 
-const addToFavorite = inject('addToFavorite', () => {});
+const favoriteStore = useFavoriteStore();
+
+const isFavorite = computed(() => favoriteStore.hasItem(props.item.id));
+
+const toggleFavorite = () => {
+  favoriteStore.addToFavorite(props.item);
+};
 </script>
 
 <template>
   <button
-    @click.stop="addToFavorite(item)"
+    @click.stop="toggleFavorite"
     type="button"
     class="favorite-btn"
-    :class="{ 'is-active': item.isFavorite }"
+    :class="{ 'is-active': isFavorite }"
     :aria-label="
-      item.isFavorite ? `Видалити з обраного: ${item.title}` : `Додати до обраного: ${item.title}`
+      isFavorite ? `Видалити з обраного: ${item.title}` : `Додати до обраного: ${item.title}`
     "
   >
     <IconFavorite />

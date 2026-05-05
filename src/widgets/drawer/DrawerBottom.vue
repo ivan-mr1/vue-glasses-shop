@@ -1,13 +1,9 @@
 <script setup>
-import { inject } from 'vue';
 import Button from '@/shared/ui/form/button';
 import { formatPrice } from '@/shared/utils/formatPrice';
+import { useCartStore } from '@/entities/cart/model/cartStore';
 
-const totalPrice = inject('totalPrice');
-const discount = inject('discount');
-const finishPrice = inject('finishPrice');
-const createOrder = inject('createOrder');
-const cartButtonDidabled = inject('cartButtonDidabled');
+const cartStore = useCartStore();
 </script>
 
 <template>
@@ -15,23 +11,27 @@ const cartButtonDidabled = inject('cartButtonDidabled');
     <div class="bottom-drawer__info">
       <div class="bottom-drawer__item">
         <span class="bottom-drawer__label">Усього:</span>
-        <span class="bottom-drawer__value">{{ formatPrice(totalPrice) }} грн</span>
+        <span class="bottom-drawer__value">{{ formatPrice(cartStore.totalPrice) }} грн</span>
       </div>
 
       <div class="bottom-drawer__item">
         <span class="bottom-drawer__label">Знижка:</span>
         <span class="bottom-drawer__value bottom-drawer__value--discount">
-          -{{ formatPrice(discount) }} грн
+          -{{ formatPrice(cartStore.discount) }} грн
         </span>
       </div>
 
       <div class="bottom-drawer__item">
         <span class="bottom-drawer__label">Усього зi знижкою:</span>
-        <span class="bottom-drawer__value"> {{ formatPrice(finishPrice) }} грн </span>
+        <span class="bottom-drawer__value"> {{ formatPrice(cartStore.finishPrice) }} грн </span>
       </div>
     </div>
 
-    <Button class="button--card" @click="() => createOrder()" :disabled="cartButtonDidabled">
+    <Button
+      class="button--card"
+      @click="() => cartStore.createOrder()"
+      :disabled="cartStore.cartIsEmpty || cartStore.isCreatingOrder"
+    >
       Оформити замовлення
     </Button>
   </div>

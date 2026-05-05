@@ -1,19 +1,22 @@
 <script setup>
-import { inject } from 'vue';
 import HeaderBlock from '@/shared/ui/header-block';
 import ProductCatalog from '@/widgets/product-catalog';
 import ProductsFilter from '@/features/filter-products';
-const items = inject('items');
+import { useProductStore } from '@/entities/product/model/productStore';
+
+const productStore = useProductStore();
 </script>
+
 <template>
   <section id="products" class="page__products products" aria-labelledby="products-title">
     <div class="products__container">
       <HeaderBlock custom-class="products__header" id="products-title" title="Каталог" />
       <ProductsFilter />
-      <ProductCatalog :items="items" />
+      <ProductCatalog :items="productStore.items" />
     </div>
   </section>
 </template>
+
 <style scoped lang="scss">
 @use '@helpers' as *;
 

@@ -1,50 +1,17 @@
 <script setup>
-import { inject, provide, ref, computed } from 'vue';
-import axios from 'axios';
-import { BASE_URL, ORDERS_ENDPOINT } from '@/shared/api/config';
 import DrawerHead from './DrawerHead.vue';
 import DrawerList from './DrawerList.vue';
 import DrawerBottom from './DrawerBottom.vue';
 import InfoBlock from '@/shared/ui/info-block';
 import cartEmptyImg from '@/shared/assets/img/drawer/cart-empty.png';
 import orderImg from '@/shared/assets/img/drawer/order.png';
+import { useCartStore } from '@/entities/cart/model/cartStore';
 
 defineProps({
   isActive: { type: Boolean, default: false },
 });
 
-const isCreatingOrder = ref(false);
-const orderId = ref(null);
-
-const { cart, closeDrawer } = inject('cart');
-const finishPrice = inject('finishPrice');
-
-const createOrder = async () => {
-  //  отправка заказа на сервер, очистка массива корзины
-  try {
-    isCreatingOrder.value = true;
-    const { data } = await axios.post(`${BASE_URL}${ORDERS_ENDPOINT}`, {
-      items: cart.value,
-      finishPrice: finishPrice.value,
-    });
-
-    cart.value = [];
-
-    orderId.value = data.id;
-    // return data;
-  } catch (err) {
-    console.error('Error loading data:', err);
-  } finally {
-    isCreatingOrder.value = false;
-  }
-};
-
-const cartIsEmpty = computed(() => cart.value.length === 0);
-
-const cartButtonDidabled = computed(() => isCreatingOrder.value || cartIsEmpty.value);
-
-provide('createOrder', createOrder);
-provide('cartButtonDidabled', cartButtonDidabled);
+const cartStore = useCartStore();
 </script>
 
 <template>
@@ -52,32 +19,32 @@ provide('cartButtonDidabled', cartButtonDidabled);
     <div
       class="drawer-overlay"
       :class="{ 'is-active': isActive }"
-      @click="() => closeDrawer()"
+      @click="() => cartStore.closeDrawer()"
     ></div>
 
     <aside class="drawer" :class="{ 'is-active': isActive }">
       <DrawerHead />
       <div class="drawer__content">
-        <div v-if="!finishPrice || orderId" class="drawer__infoblock">
+        <div v-if="!cartStore.finishPrice || cartStore.orderId" class="drawer__infoblock">
           <InfoBlock
-            v-if="!finishPrice && !orderId"
+            v-if="!cartStore.finishPrice && !cartStore.orderId"
             :image-url="cartEmptyImg"
             title="Кошик порожній"
             text="Додайте бодай один товар, щоб зробити замовлення."
           />
           <InfoBlock
-            v-if="orderId"
+            v-if="cartStore.orderId"
             :image-url="orderImg"
             :image-width="83"
             title="Замовлення оформлене!"
-            :text="`Ваше замовлення № ${orderId} скоро буде передано кур'єрській доставці`"
+            :text="`Ваше замовлення № ${cartStore.orderId} скоро буде передано кур'єрській доставці`"
           />
         </div>
 
-        <DrawerList v-if="finishPrice" />
+        <DrawerList v-if="cartStore.finishPrice" />
       </div>
 
-      <DrawerBottom v-if="finishPrice" />
+      <DrawerBottom v-if="cartStore.finishPrice" />
     </aside>
   </Teleport>
 </template>

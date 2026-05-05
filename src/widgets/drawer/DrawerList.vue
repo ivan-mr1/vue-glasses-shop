@@ -1,20 +1,20 @@
 <script setup>
-import { inject } from 'vue';
 import DrawerProduct from './DrawerProduct.vue';
+import { useCartStore } from '@/entities/cart/model/cartStore';
 
-const { cart, removeFromCart } = inject('cart');
+const cartStore = useCartStore();
 </script>
 
 <template>
   <ul class="scroll-bar drawer__list">
     <DrawerProduct
-      v-for="item in cart"
+      v-for="item in cartStore.cart"
       :key="item.id"
       :title="item.title"
       :image-url="item.imageUrl"
       :code="item.code"
       :price="item.price"
-      @on-click-remove="removeFromCart(item)"
+      @on-click-remove="cartStore.removeFromCart(item)"
     />
   </ul>
 </template>

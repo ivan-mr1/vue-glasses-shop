@@ -1,9 +1,21 @@
 <script setup>
 import Field from '@/shared/ui/form/field/Field.vue';
-import { inject } from 'vue';
-const onChangeSelect = inject('onChangeSelect');
-const onChangeSearchInput = inject('onChangeSearchInput');
+import { useProductStore } from '@/entities/product/model/productStore';
+import debounce from '@/shared/utils/debounce';
+
+const productStore = useProductStore();
+
+const onChangeSelect = (event) => {
+  productStore.setSortBy(event.target.value);
+  productStore.fetchItems();
+};
+
+const onChangeSearchInput = debounce((event) => {
+  productStore.setSearchQuery(event.target.value);
+  productStore.fetchItems();
+}, 350);
 </script>
+
 <template>
   <div class="products__filter">
     <Field
@@ -12,13 +24,14 @@ const onChangeSearchInput = inject('onChangeSearchInput');
       type="search"
       :onChangeSearchInput="onChangeSearchInput"
     />
-    <select class="products__select" @change="onChangeSelect">
+    <select class="products__select" @change="onChangeSelect" :value="productStore.filters.sortBy">
       <option value="-price">ціна вища</option>
       <option value="price">ціна нижче</option>
       <option value="name">за назвою</option>
     </select>
   </div>
 </template>
+
 <style scoped lang="scss">
 @use '@helpers' as *;
 

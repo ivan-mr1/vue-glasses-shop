@@ -1,8 +1,8 @@
 <script setup>
-import { inject } from 'vue';
 import HeaderBlock from '@/shared/ui/header-block';
+import { useCartStore } from '@/entities/cart/model/cartStore';
 
-const { closeDrawer } = inject('cart');
+const cartStore = useCartStore();
 </script>
 
 <template>
@@ -14,7 +14,7 @@ const { closeDrawer } = inject('cart');
       class="drawer__close"
       aria-label="Close drawer"
       title="Close drawer"
-      @click="() => closeDrawer()"
+      @click="() => cartStore.closeDrawer()"
     >
       <svg
         width="40"

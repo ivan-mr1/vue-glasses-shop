@@ -1,26 +1,37 @@
 <script setup>
-import { inject } from 'vue';
+import { computed } from 'vue';
+import { useCartStore } from '@/entities/cart/model/cartStore';
 import Button from '@/shared/ui/form/button';
 
-defineProps({
+const props = defineProps({
   item: {
     type: Object,
     required: true,
   },
 });
 
-const onClickAddCart = inject('onClickAddCart', () => {});
+const cartStore = useCartStore();
+
+const isAdded = computed(() => cartStore.hasItem(props.item.id));
+
+const onClickAddCart = () => {
+  if (isAdded.value) {
+    cartStore.removeFromCart(props.item);
+  } else {
+    cartStore.addToCart(props.item);
+  }
+};
 </script>
 
 <template>
   <Button
     class="button--card"
-    :in-cart="item.isAdded"
+    :in-cart="isAdded"
     :aria-label="
-      item.isAdded ? `Товар ${item.title} вже у кошику` : `Додати у кошик товар: ${item.title}`
+      isAdded ? `Товар ${item.title} вже у кошику` : `Додати у кошик товар: ${item.title}`
     "
-    @click.stop="onClickAddCart(item)"
+    @click.stop="onClickAddCart"
   >
-    {{ item.isAdded ? 'У кошику' : 'Купити' }}
+    {{ isAdded ? 'У кошику' : 'Купити' }}
   </Button>
 </template>
