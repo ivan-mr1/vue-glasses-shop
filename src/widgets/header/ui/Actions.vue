@@ -1,10 +1,12 @@
 <script setup>
 import { OpenCartButton } from '@/features/cart';
 import { OpenFavoritesButton } from '@/features/favorite';
+import { ThemeToggle } from '@/features/theme-toggle';
 </script>
 
 <template>
   <div class="header__actions">
+    <ThemeToggle />
     <OpenCartButton />
     <OpenFavoritesButton />
   </div>

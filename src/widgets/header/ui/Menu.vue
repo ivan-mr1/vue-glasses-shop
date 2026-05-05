@@ -34,9 +34,9 @@ defineProps({
 @use '@helpers' as *;
 
 .menu {
-  --menu-link: var(--color-light);
-  --menu-background: #1f2a32;
-  --menu-background-before: #1f2a32;
+  --menu-link: #ffffff;
+  --menu-background: var(--color-white);
+  --menu-background-before: var(--color-white);
 
   @media (max-width: em(767.98)) {
     position: fixed;

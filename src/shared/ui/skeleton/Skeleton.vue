@@ -19,12 +19,20 @@ defineProps({
 
 <style scoped lang="scss">
 .skeleton {
-  background: #f0f0f0;
+  --skeleton-bg: #f0f0f0;
+  --skeleton-highlight: #f4f4f4;
+
+  :global(.dark) & {
+    --skeleton-bg: #2a2a2a;
+    --skeleton-highlight: #333333;
+  }
+
+  background: var(--skeleton-bg);
   background: linear-gradient(
     90deg,
-    rgba(240, 240, 240, 1) 25%,
-    rgba(244, 244, 244, 1) 37%,
-    rgba(240, 240, 240, 1) 63%
+    var(--skeleton-bg) 25%,
+    var(--skeleton-highlight) 37%,
+    var(--skeleton-bg) 63%
   );
   background-size: 400% 100%;
   animation: skeleton-loading 1.4s ease infinite;

@@ -46,7 +46,7 @@ const cartStore = useCartStore();
     background: transparent;
     border: none;
     cursor: pointer;
-    color: #181c29;
+    color: var(--color-black);
     transition:
       color 0.3s ease,
       transform 0.3s ease;

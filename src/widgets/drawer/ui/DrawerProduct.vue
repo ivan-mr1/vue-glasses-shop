@@ -104,7 +104,7 @@ const emit = defineEmits(['onClickRemove']);
 
   &__close {
     flex-shrink: 0;
-    color: #6a6565;
+    color: var(--color-gray);
     transition:
       color 0.3s ease,
       transform 0.2s ease;
@@ -122,7 +122,7 @@ const emit = defineEmits(['onClickRemove']);
   }
 
   &__code {
-    color: #6a6565;
+    color: var(--color-gray);
   }
 
   &__price {

@@ -101,7 +101,7 @@ defineProps({
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f9f9f9;
+    background-color: var(--color-card-image-bg);
 
     img {
       max-width: 100%;
@@ -127,7 +127,7 @@ defineProps({
   &__descr,
   &__code {
     font-size: 14px;
-    color: #666666;
+    color: var(--color-gray);
   }
 
   &__price {

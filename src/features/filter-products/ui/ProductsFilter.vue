@@ -45,9 +45,19 @@ const onChangeSearchInput = debounce((event) => {
   }
   &__select {
     border-radius: 8px;
-    padding-block: 16px;
+    padding-block: 14px;
     padding-inline: 10px;
     font-size: 16px;
+    border: 1px solid var(--color-light);
+    background-color: var(--color-white);
+    color: var(--color-black);
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:focus {
+      outline: none;
+      border-color: var(--color-orange);
+    }
   }
 }
 </style>

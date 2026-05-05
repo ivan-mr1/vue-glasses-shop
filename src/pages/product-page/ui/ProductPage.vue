@@ -132,7 +132,7 @@ onMounted(loadProduct);
     gap: 8px;
     margin-bottom: 30px;
     font-weight: 500;
-    color: var(--color-light);
+    color: var(--color-black);
     transition: color 0.3s;
 
     @include hover {
@@ -153,7 +153,7 @@ onMounted(loadProduct);
 
   &__image-wrapper {
     position: relative;
-    background-color: #f9f9f9;
+    background-color: var(--color-card-image-bg);
     border-radius: 20px;
     overflow: hidden;
     aspect-ratio: 1 / 1;
@@ -207,7 +207,7 @@ onMounted(loadProduct);
 
     p {
       line-height: 1.6;
-      color: #666;
+      color: var(--color-gray);
     }
   }
 
@@ -226,8 +226,8 @@ onMounted(loadProduct);
     flex-direction: column;
     gap: 10px;
     font-size: rem(14);
-    color: #888;
-    border-top: 1px solid #eee;
+    color: var(--color-gray);
+    border-top: 1px solid var(--color-light);
     padding-top: 20px;
   }
 

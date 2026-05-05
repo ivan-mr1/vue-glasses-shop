@@ -65,7 +65,7 @@ const cartStore = useCartStore();
       content: '';
       flex-grow: 1;
       order: 2;
-      border-bottom: 1px dotted #cccccc;
+      border-bottom: 1px dotted var(--color-light);
       margin-bottom: 0.3rem;
     }
   }
@@ -82,7 +82,7 @@ const cartStore = useCartStore();
     font-size: 1.1rem;
 
     &--discount {
-      color: #ff4d4d;
+      color: #ff6b6b;
     }
   }
 }

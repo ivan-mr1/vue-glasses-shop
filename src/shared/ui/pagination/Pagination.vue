@@ -77,10 +77,11 @@ const pages = computed(() => {
     justify-content: center;
     align-items: center;
     border-radius: 8px;
-    border: 1px solid #ddd;
-    background-color: #fff;
+    border: 1px solid var(--color-light);
+    background-color: var(--color-white);
     cursor: pointer;
     font-weight: 600;
+    color: var(--color-black);
     transition: all 0.3s ease;
 
     &:disabled {
@@ -98,11 +99,11 @@ const pages = computed(() => {
   &__item {
     &.is-active {
       background-color: var(--color-orange);
-      color: #fff;
+      color: #ffffff !important;
       border-color: var(--color-orange);
 
       @include hover {
-        color: #fff;
+        color: #ffffff !important;
       }
     }
   }
