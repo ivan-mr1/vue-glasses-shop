@@ -4,7 +4,7 @@ import Menu from './Menu.vue';
 import Actions from './Actions.vue';
 import Burger1 from './burger-button/Burger-1.vue';
 
-import { useHeader } from '@/widgets/header/useHeader';
+import { useHeader } from '../lib/useHeader';
 
 const { isMenuOpen, isScrolled, isHidden, headerRef, toggleMenu, closeMenu } = useHeader();
 </script>
