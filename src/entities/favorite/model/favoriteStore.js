@@ -17,7 +17,7 @@ export const useFavoriteStore = defineStore('favorite', () => {
     }
   };
 
-  const addToFavorite = async (item) => {
+  const toggleFavorite = async (item) => {
     try {
       const isFavorite = hasItem(item.id);
 
@@ -42,7 +42,7 @@ export const useFavoriteStore = defineStore('favorite', () => {
   return {
     favorites,
     fetchFavorites,
-    addToFavorite,
+    toggleFavorite,
     hasItem,
   };
 });

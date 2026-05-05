@@ -14,14 +14,14 @@ const favoriteStore = useFavoriteStore();
 
 const isFavorite = computed(() => favoriteStore.hasItem(props.item.id));
 
-const toggleFavorite = () => {
-  favoriteStore.addToFavorite(props.item);
+const toggleFavoriteItem = () => {
+  favoriteStore.toggleFavorite(props.item);
 };
 </script>
 
 <template>
   <button
-    @click.stop="toggleFavorite"
+    @click.stop="toggleFavoriteItem"
     type="button"
     class="favorite-btn"
     :class="{ 'is-active': isFavorite }"

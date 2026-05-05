@@ -1,8 +1,8 @@
-import axios from 'axios';
-import { BASE_URL, ORDERS_ENDPOINT } from './config';
+import { apiClient } from './apiClient';
+import { ORDERS_ENDPOINT } from './config';
 
 export const createOrder = async (items, finishPrice) => {
-  const { data } = await axios.post(`${BASE_URL}${ORDERS_ENDPOINT}`, {
+  const { data } = await apiClient.post(ORDERS_ENDPOINT, {
     items,
     finishPrice,
   });
