@@ -1,11 +1,12 @@
 import { defineStore } from 'pinia';
 import { ref, reactive, computed } from 'vue';
 import { fetchProducts } from '@/shared/api/productApi';
+import { useLoadingState } from '@/shared/lib/useLoadingState';
 
 export const useProductStore = defineStore('product', () => {
   const allItems = ref([]);
-  const isLoading = ref(false);
-  const error = ref(null);
+  const { isLoading, error, runAsync } = useLoadingState();
+
   const filters = reactive({
     sortBy: 'title',
     searchQuery: '',
@@ -22,9 +23,7 @@ export const useProductStore = defineStore('product', () => {
   const totalItems = computed(() => allItems.value.length);
 
   const fetchItems = async () => {
-    isLoading.value = true;
-    error.value = null;
-    try {
+    await runAsync(async () => {
       const params = {
         sortBy: filters.sortBy,
       };
@@ -35,12 +34,7 @@ export const useProductStore = defineStore('product', () => {
 
       const data = await fetchProducts(params);
       allItems.value = data;
-    } catch (err) {
-      error.value = "Не вдалося завантажити товари. Перевірте з'єднання з інтернетом.";
-      console.error('Error loading data:', err.message);
-    } finally {
-      isLoading.value = false;
-    }
+    }, "Не вдалося завантажити товари. Перевірте з'єднання з інтернетом.");
   };
 
   const setPage = (page) => {

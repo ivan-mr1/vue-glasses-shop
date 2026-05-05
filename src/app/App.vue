@@ -5,9 +5,11 @@ import Drawer from '@/widgets/drawer';
 import Header from '@/widgets/header';
 import Footer from '@/widgets/footer';
 import ScrollUpButton from '@/shared/ui/ScrollUpButton';
+import { usePageNavigation } from '@/shared/lib/usePageNavigation';
 import './styles/main.scss';
 
 const cartStore = useCartStore();
+usePageNavigation();
 </script>
 
 <template>

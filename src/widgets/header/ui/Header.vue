@@ -28,7 +28,7 @@ const { isMenuOpen, isScrolled, isHidden, headerRef, toggleMenu, closeMenu } = u
           :isOpen="isMenuOpen"
           :list="[
             { name: 'ПРО НАС', goto: 'about' },
-            { name: 'ПРОДУКТИ', href: 'products' },
+            { name: 'ПРОДУКТИ', href: 'products', goto: 'products' },
             { name: 'КОНТАКТИ', href: 'footer', goto: 'footer' },
           ]"
           @click="closeMenu"

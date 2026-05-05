@@ -5,25 +5,18 @@ import {
   addFavorite as apiAddFavorite,
   removeFavorite as apiRemoveFavorite,
 } from '@/shared/api/favoriteApi';
+import { useLoadingState } from '@/shared/lib/useLoadingState';
 
 export const useFavoriteStore = defineStore('favorite', () => {
   const favorites = ref([]);
-  const isLoading = ref(false);
-  const error = ref(null);
+  const { isLoading, error, runAsync } = useLoadingState();
 
   const favoriteItems = computed(() => favorites.value.map((fav) => fav.item));
 
   const fetchFavorites = async () => {
-    isLoading.value = true;
-    error.value = null;
-    try {
+    await runAsync(async () => {
       favorites.value = await apiFetchFavorites();
-    } catch (err) {
-      error.value = 'Не вдалося завантажити закладки.';
-      console.error('Error loading data:', err.message);
-    } finally {
-      isLoading.value = false;
-    }
+    }, 'Не вдалося завантажити закладки.');
   };
 
   const toggleFavorite = async (item) => {
