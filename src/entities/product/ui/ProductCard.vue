@@ -1,6 +1,4 @@
 <script setup>
-import Button from '@/shared/ui/form/button';
-import { IconFavorite } from '@/shared/ui/icons';
 import { formatPrice } from '@/shared/utils/formatPrice';
 
 defineProps({
@@ -10,10 +8,6 @@ defineProps({
   description: String,
   code: String,
   price: Number,
-  isFavorite: Boolean,
-  isAdded: Boolean,
-  onClickAdd: Function,
-  onClickFavorite: Function,
 });
 </script>
 
@@ -26,17 +20,9 @@ defineProps({
         </div>
 
         <div class="product__bottom">
-          <button
-            @click.stop="onClickFavorite"
-            type="button"
-            class="product__favorite"
-            :class="{ 'is-active': isFavorite }"
-            :aria-label="
-              isFavorite ? `Видалити з обраного: ${title}` : `Додати до обраного: ${title}`
-            "
-          >
-            <IconFavorite />
-          </button>
+          <div class="product__favorite-slot">
+            <slot name="favorite" />
+          </div>
 
           <h3 class="product__title">
             <a href="/card.html?id=1" target="_blank" class="product__main-link">
@@ -54,14 +40,9 @@ defineProps({
             <div class="product__price-current">{{ formatPrice(price) }} грн</div>
           </div>
 
-          <Button
-            class="button--card product__btn"
-            :in-cart="isAdded"
-            :aria-label="isAdded ? `Товар ${title} вже у кошику` : `Додати у кошик товар: ${title}`"
-            @click.stop="onClickAdd"
-          >
-            {{ isAdded ? 'У кошику' : 'Купити' }}</Button
-          >
+          <div class="product__actions">
+            <slot name="actions" />
+          </div>
         </div>
       </div>
     </article>
@@ -86,6 +67,7 @@ defineProps({
       color: var(--color-orange);
     }
   }
+
   &__main-link {
     &::after {
       content: '';
@@ -99,8 +81,7 @@ defineProps({
   }
 
   &__title,
-  &__btn,
-  &__favorite {
+  &__actions {
     position: relative;
     z-index: 2;
   }
@@ -113,39 +94,11 @@ defineProps({
     padding: fluid(15, 10);
   }
 
-  &__favorite {
+  &__favorite-slot {
     position: absolute;
     z-index: 5;
     top: 15px;
     right: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    color: var(--color-orange);
-    background-color: var(--color-white);
-    border: 1px solid #eeeeee;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-
-    svg {
-      transition: transform 0.3s ease;
-    }
-
-    &.is-active {
-      color: var(--color-white);
-      background-color: var(--color-orange);
-      border-color: var(--color-orange);
-    }
-
-    @include hover {
-      transform: scale(1.1);
-
-      &:not(.is-active) {
-        background-color: #fff9f5;
-      }
-    }
   }
 
   &__title {

@@ -1,20 +1,26 @@
 <script setup>
+import { inject } from 'vue';
 import Button from '@/shared/ui/form/button';
 
 defineProps({
-  title: String,
-  isAdded: Boolean,
-  onClickAdd: Function,
+  item: {
+    type: Object,
+    required: true,
+  },
 });
+
+const onClickAddCart = inject('onClickAddCart', () => {});
 </script>
 
 <template>
   <Button
-    class="button--card product__btn"
-    :in-cart="isAdded"
-    :aria-label="isAdded ? `Товар ${title} вже у кошику` : `Додати у кошик товар: ${title}`"
-    @click.stop="onClickAdd"
+    class="button--card"
+    :in-cart="item.isAdded"
+    :aria-label="
+      item.isAdded ? `Товар ${item.title} вже у кошику` : `Додати у кошик товар: ${item.title}`
+    "
+    @click.stop="onClickAddCart(item)"
   >
-    {{ isAdded ? 'У кошику' : 'Купити' }}
+    {{ item.isAdded ? 'У кошику' : 'Купити' }}
   </Button>
 </template>

@@ -1,14 +1,13 @@
 <script setup>
-import { inject } from 'vue';
 import ProductCard from '@/entities/product';
+import { AddToCartButton } from '@/features/add-to-cart';
+import { ToggleFavoriteButton } from '@/features/toggle-favorite';
 
 defineProps({
   items: Array,
 });
-
-const addToFavorite = inject('addToFavorite');
-const onClickAddCart = inject('onClickAddCart');
 </script>
+
 <template>
   <ul class="products__list" data-products-catalog>
     <ProductCard
@@ -17,15 +16,21 @@ const onClickAddCart = inject('onClickAddCart');
       :id="item.id"
       :title="item.title"
       :image-url="item.imageUrl"
+      :description="item.description"
       :code="item.code"
       :price="item.price"
-      :onClickFavorite="() => addToFavorite(item)"
-      :onClickAdd="() => onClickAddCart(item)"
-      :isFavorite="item.isFavorite"
-      :is-added="item.isAdded"
-    />
+    >
+      <template #favorite>
+        <ToggleFavoriteButton :item="item" />
+      </template>
+
+      <template #actions>
+        <AddToCartButton :item="item" />
+      </template>
+    </ProductCard>
   </ul>
 </template>
+
 <style scoped lang="scss">
 @use '@helpers' as *;
 
