@@ -25,9 +25,9 @@ defineProps({
           </div>
 
           <h3 class="product__title">
-            <a href="/card.html?id=1" target="_blank" class="product__main-link">
+            <RouterLink :to="`/product/${id}`" class="product__main-link">
               {{ title }}
-            </a>
+            </RouterLink>
           </h3>
 
           <div class="product__descr">

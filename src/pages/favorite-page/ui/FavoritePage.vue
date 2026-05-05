@@ -3,6 +3,7 @@ import { onMounted } from 'vue';
 import { useFavoriteStore } from '@/entities/favorite';
 import HeaderBlock from '@/shared/ui/header-block/HeaderBlock.vue';
 import ProductCatalog from '@/widgets/product-catalog';
+import Breadcrumbs from '@/shared/ui/breadcrumbs/Breadcrumbs.vue';
 import favoritesEmptyImg from '@/shared/assets/img/favorites-empty.png';
 
 const favoriteStore = useFavoriteStore();
@@ -15,6 +16,7 @@ onMounted(async () => {
 <template>
   <section id="favorites" class="page__favorites favorites" aria-labelledby="favorites-title">
     <div class="products__container">
+      <Breadcrumbs :items="[{ name: 'Закладки' }]" />
       <HeaderBlock custom-class="favorites__header" id="favorites-title" title="Закладки" />
 
       <ProductCatalog

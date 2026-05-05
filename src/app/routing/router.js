@@ -12,6 +12,11 @@ const routes = [
     component: () => import('@/pages/favorite-page'),
   },
   {
+    path: '/product/:id',
+    name: 'Product',
+    component: () => import('@/pages/product-page'),
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: 'NotFoundPage',
     component: () => import('@/pages/not-found-page'),

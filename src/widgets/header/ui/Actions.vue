@@ -1,12 +1,12 @@
 <script setup>
-import CartButton from '@/features/cart';
-import FavoriteButton from '@/features/favorite';
+import { OpenCartButton } from '@/features/cart';
+import { OpenFavoritesButton } from '@/features/favorite';
 </script>
 
 <template>
   <div class="header__actions">
-    <CartButton />
-    <FavoriteButton />
+    <OpenCartButton />
+    <OpenFavoritesButton />
   </div>
 </template>
 

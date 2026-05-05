@@ -1,7 +1,7 @@
 <script setup>
 import { ProductCard, ProductSkeleton } from '@/entities/product';
-import { AddToCartButton } from '@/features/add-to-cart';
-import { ToggleFavoriteButton } from '@/features/toggle-favorite';
+import { AddToCartButton } from '@/features/cart';
+import { ToggleFavoriteButton } from '@/features/favorite';
 import InfoBlock from '@/shared/ui/info-block';
 import errorImg from '@/shared/assets/img/error.png';
 
