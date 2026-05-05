@@ -1,9 +1,9 @@
 <script setup>
 import { onMounted } from 'vue';
 import { useFavoriteStore } from '@/entities/favorite';
-import HeaderBlock from '@/shared/ui/header-block/HeaderBlock.vue';
+import HeaderBlock from '@/shared/ui/header-block';
 import ProductCatalog from '@/widgets/product-catalog';
-import Breadcrumbs from '@/shared/ui/breadcrumbs/Breadcrumbs.vue';
+import { Breadcrumbs } from '@/shared/ui/breadcrumbs';
 import favoritesEmptyImg from '@/shared/assets/img/favorites-empty.png';
 
 const favoriteStore = useFavoriteStore();

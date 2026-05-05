@@ -7,7 +7,7 @@ import { AddToCartButton } from '@/features/cart';
 import { ToggleFavoriteButton } from '@/features/favorite';
 import Skeleton from '@/shared/ui/skeleton';
 import InfoBlock from '@/shared/ui/info-block';
-import Breadcrumbs from '@/shared/ui/breadcrumbs/Breadcrumbs.vue';
+import { Breadcrumbs } from '@/shared/ui/breadcrumbs';
 import errorImg from '@/shared/assets/img/error.png';
 
 const route = useRoute();
@@ -19,6 +19,12 @@ const loadProduct = async () => {
   await runAsync(async () => {
     product.value = await fetchProductById(route.params.id);
   }, 'Не вдалося завантажити інформацію про товар');
+};
+
+const fixImageUrl = (url) => {
+  if (!url) return '';
+  // Если путь относительный (./), делаем его абсолютным от корня для вложенных роутов
+  return url.startsWith('./') ? url.replace('./', '/') : url;
 };
 
 onMounted(loadProduct);
@@ -74,7 +80,11 @@ onMounted(loadProduct);
 
       <div v-else-if="product" class="product-page__grid">
         <div class="product-page__image-wrapper">
-          <img :src="product.imageUrl" :alt="product.title" class="product-page__image" />
+          <img
+            :src="fixImageUrl(product.imageUrl)"
+            :alt="product.title"
+            class="product-page__image"
+          />
           <div class="product-page__favorite">
             <ToggleFavoriteButton :item="product" />
           </div>
