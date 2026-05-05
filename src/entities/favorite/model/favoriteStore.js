@@ -1,13 +1,15 @@
 import { defineStore } from 'pinia';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import {
-  fetchFavorites as apiFetchFavorites,
+  fetchFavoritesWithRelations as apiFetchFavorites,
   addFavorite as apiAddFavorite,
   removeFavorite as apiRemoveFavorite,
 } from '@/shared/api/favoriteApi';
 
 export const useFavoriteStore = defineStore('favorite', () => {
   const favorites = ref([]);
+
+  const favoriteItems = computed(() => favorites.value.map((fav) => fav.item));
 
   const fetchFavorites = async () => {
     try {
@@ -41,6 +43,7 @@ export const useFavoriteStore = defineStore('favorite', () => {
 
   return {
     favorites,
+    favoriteItems,
     fetchFavorites,
     toggleFavorite,
     hasItem,
