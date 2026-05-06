@@ -91,8 +91,7 @@ defineProps({
 
   &__image {
     width: 100%;
-    aspect-ratio: 4 / 3;
-    padding: 15px;
+    aspect-ratio: 16 / 9;
     display: flex;
     align-items: center;
     justify-content: center;

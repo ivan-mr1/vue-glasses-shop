@@ -45,14 +45,14 @@ defineProps({
   &__item {
     display: flex;
     align-items: center;
-    font-size: rem(14);
+    font-size: rem(16);
     color: #888;
   }
 
   &__separator {
     margin-inline: 10px;
     color: #ccc;
-    font-size: rem(12);
+    font-size: rem(16);
   }
 
   &__link {
